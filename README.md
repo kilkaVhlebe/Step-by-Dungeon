@@ -8,10 +8,11 @@ I want make a simple web auto batller, but it metamorphosed in something like J-
 ### For developing
 clone this repo. And move in it.
 
-``
+```
 git clone https://github.com/tugaserya/Step-by-Dungeon.git
+
 cd Step-by-Dungeon
-``
+```
 [Download asstes](https://trevor-pupkin.itch.io/tech-dungeon-roguelite).
 Create folder with name `Assets` and move all assets from archive to folder.
 In godot project manager import this project.
