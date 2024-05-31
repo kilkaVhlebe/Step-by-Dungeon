@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bii1p82m3h1i0"]
+
+[ext_resource type="Script" path="res://src/Items/shotgun.gd" id="1_hbfqt"]
+[ext_resource type="Texture2D" uid="uid://ct8tly8s2idje" path="res://Assets/Items/shotgun.png" id="1_y6dhp"]
+[ext_resource type="Texture2D" uid="uid://cvhlgfxkj76i4" path="res://Assets/UI/item_label.png" id="3_yg0l0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vohco"]
+size = Vector2(31, 12)
+
+[node name="shotgun" type="Node2D"]
+script = ExtResource("1_hbfqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, -5.68434e-14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_y6dhp")
+
+[node name="enterArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enterArea"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_vohco")
+
+[node name="Label" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -22)
+scale = Vector2(0.148438, 0.148438)
+texture = ExtResource("3_yg0l0")
+
+[connection signal="body_entered" from="enterArea" to="." method="_on_enter_area_body_entered"]
+[connection signal="body_exited" from="enterArea" to="." method="_on_enter_area_body_exited"]

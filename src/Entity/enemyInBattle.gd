@@ -5,22 +5,27 @@ extends CharacterBody2D
 
 @onready var player = $"../../Player/CharacterBody2D"
 
+@onready var hpBar = $HpBar
+
 var rng = RandomNumberGenerator.new()
 
 var maxHealth = 100
 var currentHealth = maxHealth
 var skillChance = 0.1
-var resistValue = 10
 var isStanned = false
 
 func _ready():
-	add_to_group("Entity") 
-
+	add_to_group("Entity")
+	add_to_group("Enemy")
+	hpBar.max_value = maxHealth
+	hpBar.value = currentHealth
+	
+@warning_ignore("unused_parameter")
 func _process(delta):
 	pass
 
 func onStep():
-	if not isStanned:
+	if not isStanned and player != null :
 		print("enemy step")
 		var x = rng.randf() 
 		if x < skillChance:
@@ -45,7 +50,9 @@ func stun(target):
 	animation.play("idle")
 	
 func takeDamage(damageValue):
-	currentHealth -= damageValue - resistValue
+	currentHealth -= damageValue
+	hpBar.value = currentHealth
+	print("enemy was damaged")
 	if currentHealth <= 0:
 		remove_from_group("Entity")
 		animation.play("death")

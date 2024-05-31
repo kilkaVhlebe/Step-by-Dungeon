@@ -8,12 +8,15 @@ var isStepNow = false
 
 var aliveEnemys = 2
 
-var batlleRwsult
+var batlleResult
+
+var stepCounter = 0
 
 
 func _ready():
 	pass
-
+	
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if query.size() <= get_tree().get_nodes_in_group("Entity").size():
 		if player != null: addToQuery(player)
@@ -34,9 +37,18 @@ func endStep():
 	await get_tree().create_timer(1).timeout
 	if player.currentEnergy < 100 and query[0] != null and not query[0].isStanned:
 		player.currentEnergy += 5
+		
 	if query[0] != null and query[0].isStanned:
 		query[0].isStanned = false
+	else:
+		stepCounter += 1
+		
 	query.remove_at(0)
+	
+	if stepCounter % 2 == 0 and LevelState.playerItemsList.find("medecin_package") != -1:
+		player.currentHealth += 5
+		player.hpBar.value = player.currentHealth
+		
 	isStepNow = false
 
 func addToQuery(Entity):
@@ -54,3 +66,4 @@ func endBattle(result):
 		"win":
 			get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
 			
+

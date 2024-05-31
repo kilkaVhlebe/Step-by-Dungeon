@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8ea4w0mdniu4"]
+[gd_scene load_steps=12 format=3 uid="uid://b8ea4w0mdniu4"]
 
 [ext_resource type="Script" path="res://src/Systems/battle.system.gd" id="1_8vi6v"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_pntbf"]
 [ext_resource type="PackedScene" uid="uid://yva7ky46dgdj" path="res://Scenes/Prebafs/PlayerInBattle.tscn" id="2_cj6i8"]
 [ext_resource type="PackedScene" uid="uid://dmfw66nek0ab5" path="res://Scenes/Prebafs/Enemy.tscn" id="3_gsnm2"]
+[ext_resource type="Texture2D" uid="uid://cqdwoonn5rwxc" path="res://Assets/UI/Health bat under.png" id="3_sqwim"]
+[ext_resource type="Texture2D" uid="uid://cbdbi1b8r85fh" path="res://Assets/UI/progerss bar hp.png" id="4_ri7cc"]
+[ext_resource type="Texture2D" uid="uid://dol4dufwkaywi" path="res://Assets/UI/Energy bar progress.png" id="5_os73q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2gx4"]
 texture = ExtResource("1_pntbf")
@@ -901,43 +904,6 @@ texture = ExtResource("1_pntbf")
 [sub_resource type="TileSet" id="TileSet_hsekh"]
 sources/0 = SubResource("TileSetAtlasSource_w2gx4")
 
-[sub_resource type="GDScript" id="GDScript_15egd"]
-resource_name = "EnemyHp1"
-script/source = "extends Label
-
-
-func _process(delta):
-	if $\"../../../Entity/Enemies/CharacterBody2D\" != null: text = str($\"../../../Entity/Enemies/CharacterBody2D\".currentHealth)
-"
-
-[sub_resource type="GDScript" id="GDScript_swgdf"]
-resource_name = "EnemyHP2"
-script/source = "extends Label
-
-
-func _process(delta):
-	if $\"../../../Entity/Enemies/2CharacterBody2D\" != null: text = str($\"../../../Entity/Enemies/2CharacterBody2D\".currentHealth)
-"
-
-[sub_resource type="GDScript" id="GDScript_jauyf"]
-resource_name = "playerHP"
-script/source = "extends Label
-
-
-
-func _process(delta):
-	text = str($\"../../../Entity/Player/CharacterBody2D\".currentHealth)
-"
-
-[sub_resource type="GDScript" id="GDScript_yltsu"]
-resource_name = "player.energy"
-script/source = "extends Label
-
-
-func _process(delta):
-	text = str($\"../../../Entity/Player/CharacterBody2D\".currentEnergy)
-"
-
 [sub_resource type="GDScript" id="GDScript_snpjd"]
 resource_name = "UIchecker"
 script/source = "extends Button
@@ -983,36 +949,25 @@ layer_0/tile_data = PackedInt32Array(589837, 655360, 20, 655373, 655360, 21, 589
 
 [node name="UI" type="Node2D" parent="Map"]
 
-[node name="EnemyHP1" type="Label" parent="Map/UI"]
-offset_left = 285.0
-offset_top = 132.0
-offset_right = 325.0
-offset_bottom = 155.0
-theme_override_font_sizes/font_size = 7
-script = SubResource("GDScript_15egd")
+[node name="PlayerHpBar" type="TextureProgressBar" parent="Map/UI"]
+offset_left = 179.0
+offset_top = 70.0
+offset_right = 205.0
+offset_bottom = 77.0
+value = 100.0
+texture_under = ExtResource("3_sqwim")
+texture_progress = ExtResource("4_ri7cc")
+texture_progress_offset = Vector2(6, 2)
 
-[node name="EnemyHP2" type="Label" parent="Map/UI"]
-offset_left = 260.0
-offset_top = 132.0
-offset_right = 300.0
-offset_bottom = 155.0
-theme_override_font_sizes/font_size = 7
-script = SubResource("GDScript_swgdf")
-
-[node name="PlayerHP" type="Label" parent="Map/UI"]
-offset_left = 183.0
-offset_top = 68.0
-offset_right = 203.0
-offset_bottom = 91.0
-script = SubResource("GDScript_jauyf")
-
-[node name="PlayerEnergy" type="Label" parent="Map/UI"]
-offset_left = 182.0
-offset_top = 89.0
-offset_right = 207.0
-offset_bottom = 112.0
-theme_override_font_sizes/font_size = 8
-script = SubResource("GDScript_yltsu")
+[node name="PlayerEnergyBar" type="TextureProgressBar" parent="Map/UI"]
+offset_left = 179.0
+offset_top = 79.0
+offset_right = 205.0
+offset_bottom = 86.0
+value = 100.0
+texture_under = ExtResource("3_sqwim")
+texture_progress = ExtResource("5_os73q")
+texture_progress_offset = Vector2(6, 2)
 
 [node name="UIButtuns" type="Node2D" parent="Map/UI"]
 

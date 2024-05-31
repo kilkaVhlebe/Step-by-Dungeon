@@ -13,12 +13,16 @@ extends CharacterBody2D
 @onready var enemy = $"../../Enemies/CharacterBody2D"
 @onready var enemy2 = $"../../Enemies/2CharacterBody2D"
 
+@onready var hpBar = $"../../../Map/UI/PlayerHpBar"
+@onready var energyBar = $"../../../Map/UI/PlayerEnergyBar"
+
 var maxHealth = 200
 var currentHealth = maxHealth
 var energyCapacity = 100
 var currentEnergy = energyCapacity
 var currentEnemy = enemy
 var resistValue = 10
+
 
 var isStanned = false
 var isAttacking = false
@@ -27,7 +31,13 @@ var isSkip = false
 
 func _ready():
 	add_to_group("Entity") 
+	hpBar.max_value = maxHealth
+	hpBar.value = currentHealth
+	
+	energyBar.max_value = energyCapacity
+	energyBar.value = currentEnergy
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	pass
 	
@@ -41,6 +51,7 @@ func onStep():
 
 func takeDamage(damageValue):
 	currentHealth -= damageValue - resistValue
+	hpBar.value = currentHealth
 	if currentHealth <= 0:
 		animation.play("death")
 		await animation.animation_finished
@@ -51,23 +62,28 @@ func _on_button_pressed():
 	if currentEnergy > 15 and currentEnemy != null:
 		uiButtons.visible = false
 		currentEnergy -= 15
+		energyBar.value = currentEnergy
 		animation.play("shoot")
 		currentEnemy.takeDamage(50)
+		if LevelState.playerItemsList.find("shotgun") != -1:
+			print("shotgun is shooting")
+			get_tree().call_group("Enemy", "takeDamage", 10)
 		await animation.animation_finished
 		animation.play("reload")
-		battleSystem.endStep()
+		await animation.animation_finished
 		animation.play("idle")
+		battleSystem.endStep()
+		
 
 func _on_skip_pressed():
 	uiButtons.visible = false
 	battleSystem.endStep()
 
-
-
 func _on_stun_pressed():
 	if currentEnergy > 40 and currentEnemy != null:
 		uiButtons.visible = false
 		currentEnergy -= 40
+		energyBar.value = currentEnergy
 		currentEnemy.isStanned = true
 		animation.play("shoot")
 		currentEnemy.takeDamage(10)
