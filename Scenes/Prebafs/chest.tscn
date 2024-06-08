@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfnaf2vd1hws4"]
+
+[ext_resource type="Script" path="res://src/Items/chest.gd" id="1_emlcd"]
+[ext_resource type="Texture2D" uid="uid://dcdr07ab1o4cu" path="res://Assets/Items/chest.png" id="1_jn7t5"]
+[ext_resource type="Texture2D" uid="uid://m8uelymsl86n" path="res://Assets/Items/open_chest.png" id="2_cklgd"]
+[ext_resource type="Texture2D" uid="uid://blvnq6s6famr1" path="res://Assets/UI/Нажмите «E».png" id="4_cno5f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6gnn"]
+size = Vector2(22, 14)
+
+[node name="chest" type="Node2D"]
+script = ExtResource("1_emlcd")
+
+[node name="closed_chest" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_jn7t5")
+
+[node name="open_chest" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.736842, 0.736842)
+texture = ExtResource("2_cklgd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_r6gnn")
+
+[node name="UI" type="Node2D" parent="."]
+visible = false
+
+[node name="Label" type="Sprite2D" parent="UI"]
+position = Vector2(1, -22)
+scale = Vector2(0.352941, 0.352941)
+texture = ExtResource("4_cno5f")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

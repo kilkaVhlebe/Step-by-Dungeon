@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8ea4w0mdniu4"]
+[gd_scene load_steps=20 format=3 uid="uid://b8ea4w0mdniu4"]
 
 [ext_resource type="Script" path="res://src/Systems/battle.system.gd" id="1_8vi6v"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_pntbf"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://cqdwoonn5rwxc" path="res://Assets/UI/Health bat under.png" id="3_sqwim"]
 [ext_resource type="Texture2D" uid="uid://cbdbi1b8r85fh" path="res://Assets/UI/progerss bar hp.png" id="4_ri7cc"]
 [ext_resource type="Texture2D" uid="uid://dol4dufwkaywi" path="res://Assets/UI/Energy bar progress.png" id="5_os73q"]
+[ext_resource type="Texture2D" uid="uid://by5w7t3ue5kov" path="res://Assets/UI/Атака.png" id="6_lkp4d"]
+[ext_resource type="Texture2D" uid="uid://xujf5qq1diy6" path="res://Assets/UI/Скип.png" id="7_l7ipb"]
+[ext_resource type="Texture2D" uid="uid://d2sfqk3kv5tnp" path="res://Assets/UI/Атака_Focused.png" id="7_n8dik"]
+[ext_resource type="Texture2D" uid="uid://c1x4weafm5red" path="res://Assets/UI/стан.png" id="8_5p81j"]
+[ext_resource type="Texture2D" uid="uid://2hwmft3qvl2f" path="res://Assets/UI/Скип_Focused.png" id="9_1x2fi"]
+[ext_resource type="Texture2D" uid="uid://cpd38l2eydcjt" path="res://Assets/UI/стан_Focused.png" id="11_x8dpf"]
+[ext_resource type="Texture2D" uid="uid://b2735p55gqr2v" path="res://Assets/UI/Stun effect.png" id="12_06a8m"]
+[ext_resource type="Script" path="res://src/UI/StunSprite.gd" id="13_aiqei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2gx4"]
 texture = ExtResource("1_pntbf")
@@ -970,31 +978,31 @@ texture_progress = ExtResource("5_os73q")
 texture_progress_offset = Vector2(6, 2)
 
 [node name="UIButtuns" type="Node2D" parent="Map/UI"]
+scale = Vector2(0.3, 0.3)
 
-[node name="Attak" type="Button" parent="Map/UI/UIButtuns"]
-texture_filter = 1
-offset_left = 215.0
-offset_top = 67.0
-offset_right = 238.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 8
-text = "ATK"
+[node name="Attak" type="TextureButton" parent="Map/UI/UIButtuns"]
+offset_left = 740.0
+offset_top = 233.333
+offset_right = 813.0
+offset_bottom = 263.333
+texture_normal = ExtResource("6_lkp4d")
+texture_hover = ExtResource("7_n8dik")
 
-[node name="Skip" type="Button" parent="Map/UI/UIButtuns"]
-offset_left = 242.0
-offset_top = 67.0
-offset_right = 267.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 8
-text = "Skip"
+[node name="Skip" type="TextureButton" parent="Map/UI/UIButtuns"]
+offset_left = 900.0
+offset_top = 233.333
+offset_right = 973.0
+offset_bottom = 263.333
+texture_normal = ExtResource("7_l7ipb")
+texture_hover = ExtResource("9_1x2fi")
 
-[node name="Stun" type="Button" parent="Map/UI/UIButtuns"]
-offset_left = 271.0
-offset_top = 67.0
-offset_right = 297.0
-offset_bottom = 87.0
-theme_override_font_sizes/font_size = 8
-text = "Stun"
+[node name="Stun" type="TextureButton" parent="Map/UI/UIButtuns"]
+offset_left = 820.0
+offset_top = 233.333
+offset_right = 893.0
+offset_bottom = 263.333
+texture_normal = ExtResource("8_5p81j")
+texture_hover = ExtResource("11_x8dpf")
 
 [node name="UITarget" type="Node2D" parent="Map/UI"]
 
@@ -1016,6 +1024,16 @@ theme_override_font_sizes/font_size = 8
 text = "2"
 script = SubResource("GDScript_2y0ip")
 
+[node name="Effects" type="Node2D" parent="Map/UI"]
+
+[node name="StunSprite" type="Sprite2D" parent="Map/UI/Effects"]
+visible = false
+position = Vector2(182, 93)
+rotation = 3.14159
+scale = Vector2(0.857143, 0.857143)
+texture = ExtResource("12_06a8m")
+script = ExtResource("13_aiqei")
+
 [node name="Entity" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="Entity"]
@@ -1031,7 +1049,7 @@ position = Vector2(284, 130)
 [node name="CharacterBody2D" parent="Entity/Player" instance=ExtResource("2_cj6i8")]
 position = Vector2(217, 138)
 
-[connection signal="pressed" from="Map/UI/UIButtuns/Attak" to="Entity/Player/CharacterBody2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Map/UI/UIButtuns/Attak" to="Entity/Player/CharacterBody2D" method="_on_attak_pressed"]
 [connection signal="pressed" from="Map/UI/UIButtuns/Skip" to="Entity/Player/CharacterBody2D" method="_on_skip_pressed"]
 [connection signal="pressed" from="Map/UI/UIButtuns/Stun" to="Entity/Player/CharacterBody2D" method="_on_stun_pressed"]
 [connection signal="pressed" from="Map/UI/UITarget/Target1" to="Entity/Player/CharacterBody2D" method="_on_target_1_pressed"]

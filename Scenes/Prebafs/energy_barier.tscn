@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck87xdg4g8i2l"]
+
+[ext_resource type="Texture2D" uid="uid://bv7luauqopwkq" path="res://Assets/Items/energy barier.png" id="1_jhydg"]
+[ext_resource type="Script" path="res://src/Items/energy_barier.gd" id="1_pnn2g"]
+[ext_resource type="Texture2D" uid="uid://ci40pfbxbe5yi" path="res://Assets/UI/item_label_3.png" id="2_dr8ks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v14ha"]
+size = Vector2(17, 12)
+
+[node name="energy_barier" type="Node2D"]
+script = ExtResource("1_pnn2g")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_jhydg")
+
+[node name="enterArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enterArea"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_v14ha")
+
+[node name="Label" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.148, 0.148)
+texture = ExtResource("2_dr8ks")
+
+[connection signal="body_entered" from="enterArea" to="." method="_on_enter_area_body_entered"]
+[connection signal="body_exited" from="enterArea" to="." method="_on_enter_area_body_exited"]
