@@ -1,3 +1,81 @@
-[gd_scene format=3 uid="uid://dpxwbwumid4ud"]
+[gd_scene load_steps=11 format=3 uid="uid://dpxwbwumid4ud"]
+
+[ext_resource type="Texture2D" uid="uid://e2uvb1etoeyc" path="res://Assets/UI/menu ui/Кнопка Играть.png" id="1_ph0e7"]
+[ext_resource type="Texture2D" uid="uid://jpoc1vd86fn2" path="res://Assets/UI/menu ui/Кнопка Играть Focused.png" id="2_5doy0"]
+[ext_resource type="Texture2D" uid="uid://djwvsxdomrlg1" path="res://Assets/UI/menu ui/Кнопка Настройки.png" id="3_4s67p"]
+[ext_resource type="Texture2D" uid="uid://djqli1svsc0mi" path="res://Assets/UI/menu ui/Кнопка Настройки Focused.png" id="4_wica0"]
+[ext_resource type="Texture2D" uid="uid://cobwfvd7ci6y4" path="res://Assets/UI/menu ui/Кнопка Гайды.png" id="5_mv1ex"]
+[ext_resource type="Texture2D" uid="uid://cr5wbkii8fknt" path="res://Assets/UI/menu ui/Кнопка Гайды Focused-2.png" id="6_7t4yr"]
+[ext_resource type="Texture2D" uid="uid://bfaftsk8m6ui" path="res://Assets/UI/menu ui/Кнопка Выход.png" id="7_ns4dr"]
+[ext_resource type="Texture2D" uid="uid://djgrnimj1ehgr" path="res://Assets/UI/menu ui/Кнопка Выход Focused.png" id="8_168ck"]
+
+[sub_resource type="GDScript" id="GDScript_d4aus"]
+resource_name = "playButton"
+script/source = "extends TextureButton
+
+
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://Scenes/Levels/Level1/level1.1.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_e7fme"]
+resource_name = "quitButton"
+script/source = "extends TextureButton
+
+
+func _on_pressed():
+	get_tree().quit()
+"
 
 [node name="MainMenu" type="Node2D"]
+
+[node name="UI" type="Node2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.365, 0.365)
+
+[node name="Играть" type="TextureButton" parent="UI"]
+offset_left = -36.0
+offset_top = -90.0
+offset_right = 38.0
+offset_bottom = -60.0
+texture_normal = ExtResource("1_ph0e7")
+texture_hover = ExtResource("2_5doy0")
+script = SubResource("GDScript_d4aus")
+metadata/_edit_use_anchors_ = true
+
+[node name="Настройки" type="TextureButton" parent="UI"]
+offset_left = -36.0
+offset_top = -54.0
+offset_right = 38.0
+offset_bottom = -24.0
+texture_normal = ExtResource("3_4s67p")
+texture_hover = ExtResource("4_wica0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Гайды" type="TextureButton" parent="UI"]
+offset_left = -36.0
+offset_top = -18.0
+offset_right = 38.0
+offset_bottom = 12.0
+texture_normal = ExtResource("5_mv1ex")
+texture_hover = ExtResource("6_7t4yr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Выход" type="TextureButton" parent="UI"]
+offset_left = -36.0
+offset_top = 18.0
+offset_right = 38.0
+offset_bottom = 48.0
+texture_normal = ExtResource("7_ns4dr")
+texture_hover = ExtResource("8_168ck")
+script = SubResource("GDScript_e7fme")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -11)
+zoom = Vector2(8, 8)
+position_smoothing_enabled = true
+
+[connection signal="pressed" from="UI/Играть" to="UI/Играть" method="_on_pressed"]
+[connection signal="pressed" from="UI/Выход" to="UI/Выход" method="_on_pressed"]
