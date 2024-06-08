@@ -5,7 +5,6 @@ extends Node2D
 var PlayerIsNear = false
 
 func _ready():
-	add_to_group("items")
 	label.visible = false
 
 func _input(event):
@@ -24,7 +23,7 @@ func _on_enter_area_body_exited(body):
 		PlayerIsNear = false
 		
 func equip():
-	if LevelState.playerItemsList.find("medecin_package") == -1:
-		LevelState.playerItemsList.append("medecin_package")
+	if LevelState.playerItemsList.find("energy_barier") == -1:
+		LevelState.playerItemsList.append("energy_barier")
 		queue_free()
 

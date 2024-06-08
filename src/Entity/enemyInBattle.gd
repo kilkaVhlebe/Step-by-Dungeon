@@ -42,10 +42,14 @@ func attack(target):
 	animation.play("idle")
 	
 func stun(target):
+	print("enemy use stun")
 	skillChance -= 0.05
 	animation.play("shoot")
-	target.takeDamage(5)
-	target.isStanned = true
+	if LevelState.playerItemsList.find("energy_barier") == -1 or battleSystem.energyBarierColdown != 0:
+		print("player was stuned")
+		target.takeDamage(5)
+		target.isStanned = true
+		battleSystem.energyBarierColdown = 3
 	await animation.animation_finished
 	animation.play("idle")
 	

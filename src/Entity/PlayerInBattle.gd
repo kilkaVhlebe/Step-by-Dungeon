@@ -29,13 +29,20 @@ var isAttacking = false
 var isStunning = false
 var isSkip = false
 
+
 func _ready():
 	add_to_group("Entity") 
 	hpBar.max_value = maxHealth
 	hpBar.value = currentHealth
 	
-	energyBar.max_value = energyCapacity
-	energyBar.value = currentEnergy
+	if LevelState.playerItemsList.find("energy_barier") == -1:
+		energyBar.max_value = energyCapacity
+		energyBar.value = currentEnergy
+	else:
+		energyCapacity - 20
+		energyBar.max_value = energyCapacity
+		currentEnergy = energyCapacity
+		energyBar.value = currentEnergy
 
 @warning_ignore("unused_parameter")
 func _process(delta):
@@ -58,7 +65,7 @@ func takeDamage(damageValue):
 		queue_free()
 		battleSystem.endBattle("lose")
 
-func _on_button_pressed():
+func _on_attak_pressed():
 	if currentEnergy > 15 and currentEnemy != null:
 		uiButtons.visible = false
 		currentEnergy -= 15
@@ -73,7 +80,6 @@ func _on_button_pressed():
 		await animation.animation_finished
 		animation.play("idle")
 		battleSystem.endStep()
-		
 
 func _on_skip_pressed():
 	uiButtons.visible = false
@@ -99,3 +105,6 @@ func _on_target_1_pressed():
 
 func _on_target_2_pressed():
 	currentEnemy = $"../../Enemies/2CharacterBody2D"
+
+
+

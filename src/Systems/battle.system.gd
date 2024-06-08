@@ -12,6 +12,8 @@ var batlleResult
 
 var stepCounter = 0
 
+var energyBarierColdown = 0
+
 
 func _ready():
 	pass
@@ -35,12 +37,15 @@ func _physics_process(delta):
 
 func endStep():
 	await get_tree().create_timer(1).timeout
-	if player.currentEnergy < 100 and query[0] != null and not query[0].isStanned:
+	if player.currentEnergy < player.energyCapacity and query[0] != null and not query[0].isStanned:
 		player.currentEnergy += 5
+		
+	if energyBarierColdown > 0:
+		energyBarierColdown -= 1
 		
 	if query[0] != null and query[0].isStanned:
 		query[0].isStanned = false
-	else:
+	elif query[0] != null:
 		stepCounter += 1
 		
 	query.remove_at(0)
@@ -64,6 +69,6 @@ func endBattle(result):
 		"lose":
 			get_tree().change_scene_to_file("res://Scenes/Levels/Dev_lvl.tscn")
 		"win":
-			get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
-			
+			if LevelState.allSecenesPaths.find(LevelState.currentLevel) < LevelState.allSecenesPaths.size() -1 :
+				get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
 
