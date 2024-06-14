@@ -1,7 +1,7 @@
 # Step by Dungeon - Web J-RPG
 ## Description
 I want make a simple web auto batller, but it metamorphosed in something like J-RPG.
-[All game assets](https://trevor-pupkin.itch.io/tech-dungeon-roguelite).
+[Basic game assets](https://trevor-pupkin.itch.io/tech-dungeon-roguelite).
 
 ## Installation
 
@@ -21,7 +21,7 @@ Cool! Now you can developing this game a much better than me!
 
 ### For playing
 
-This game don't have any playable versions. In future you isn't need to install this game. Couse it's game for your browser.
+You actualy don't need to install the game. Play it on [itch.io](https://kilkavhlebe.itch.io/step-by-dungeon)
 
 ## Running
 
