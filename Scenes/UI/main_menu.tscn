@@ -1,13 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dpxwbwumid4ud"]
+[gd_scene load_steps=15 format=3 uid="uid://dpxwbwumid4ud"]
 
 [ext_resource type="Texture2D" uid="uid://e2uvb1etoeyc" path="res://Assets/UI/menu ui/Кнопка Играть.png" id="1_ph0e7"]
 [ext_resource type="Texture2D" uid="uid://jpoc1vd86fn2" path="res://Assets/UI/menu ui/Кнопка Играть Focused.png" id="2_5doy0"]
 [ext_resource type="Texture2D" uid="uid://djwvsxdomrlg1" path="res://Assets/UI/menu ui/Кнопка Настройки.png" id="3_4s67p"]
 [ext_resource type="Texture2D" uid="uid://djqli1svsc0mi" path="res://Assets/UI/menu ui/Кнопка Настройки Focused.png" id="4_wica0"]
-[ext_resource type="Texture2D" uid="uid://cobwfvd7ci6y4" path="res://Assets/UI/menu ui/Кнопка Гайды.png" id="5_mv1ex"]
-[ext_resource type="Texture2D" uid="uid://cr5wbkii8fknt" path="res://Assets/UI/menu ui/Кнопка Гайды Focused-2.png" id="6_7t4yr"]
+[ext_resource type="Texture2D" uid="uid://b2ht5vaxvbt0k" path="res://Assets/UI/menu ui/github_logo.png" id="7_5yn32"]
 [ext_resource type="Texture2D" uid="uid://bfaftsk8m6ui" path="res://Assets/UI/menu ui/Кнопка Выход.png" id="7_ns4dr"]
 [ext_resource type="Texture2D" uid="uid://djgrnimj1ehgr" path="res://Assets/UI/menu ui/Кнопка Выход Focused.png" id="8_168ck"]
+[ext_resource type="AudioStream" uid="uid://ccwt8h4qrifve" path="res://Audio/SFX/UI/MI_SFX 43.wav" id="8_u777y"]
+[ext_resource type="AudioStream" uid="uid://dl3sdc8xeeewa" path="res://Audio/Music/Three Red Hearts - Penultimate.ogg" id="9_nmr1d"]
+[ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="9_wf8g6"]
 
 [sub_resource type="GDScript" id="GDScript_d4aus"]
 resource_name = "playButton"
@@ -16,7 +18,18 @@ script/source = "extends TextureButton
 
 
 func _on_pressed():
+	$\"../../Audio/MenuSFX\".play()
 	get_tree().change_scene_to_file(\"res://Scenes/Levels/Level1/level1.1.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_sfwm2"]
+resource_name = "optionButton"
+script/source = "extends TextureButton
+
+
+func _on_pressed():
+	$\"../../Audio/MenuSFX\".play()
+	get_tree().change_scene_to_file(\"res://Scenes/UI/options.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_e7fme"]
@@ -28,6 +41,17 @@ func _on_pressed():
 	get_tree().quit()
 "
 
+[sub_resource type="GDScript" id="GDScript_g1ott"]
+resource_name = "githubButton"
+script/source = "extends TextureButton
+
+
+
+func _on_pressed():
+	$\"../../../Audio/MenuSFX\".play()
+	OS.shell_open(\"https://github.com/kilkaVhlebe/Step-by-Dungeon\")
+"
+
 [node name="MainMenu" type="Node2D"]
 
 [node name="UI" type="Node2D" parent="."]
@@ -35,47 +59,72 @@ position = Vector2(0, -10)
 scale = Vector2(0.365, 0.365)
 
 [node name="Играть" type="TextureButton" parent="UI"]
-offset_left = -36.0
-offset_top = -90.0
-offset_right = 38.0
-offset_bottom = -60.0
+offset_left = -38.3562
+offset_top = -57.5342
+offset_right = 35.6438
+offset_bottom = -27.5342
 texture_normal = ExtResource("1_ph0e7")
 texture_hover = ExtResource("2_5doy0")
 script = SubResource("GDScript_d4aus")
 metadata/_edit_use_anchors_ = true
 
 [node name="Настройки" type="TextureButton" parent="UI"]
-offset_left = -36.0
-offset_top = -54.0
-offset_right = 38.0
-offset_bottom = -24.0
+offset_left = -38.3562
+offset_top = -21.5342
+offset_right = 35.6438
+offset_bottom = 8.46576
 texture_normal = ExtResource("3_4s67p")
 texture_hover = ExtResource("4_wica0")
-metadata/_edit_use_anchors_ = true
-
-[node name="Гайды" type="TextureButton" parent="UI"]
-offset_left = -36.0
-offset_top = -18.0
-offset_right = 38.0
-offset_bottom = 12.0
-texture_normal = ExtResource("5_mv1ex")
-texture_hover = ExtResource("6_7t4yr")
+script = SubResource("GDScript_sfwm2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Выход" type="TextureButton" parent="UI"]
-offset_left = -36.0
-offset_top = 18.0
-offset_right = 38.0
-offset_bottom = 48.0
+offset_left = -37.9726
+offset_top = 13.2877
+offset_right = 36.0274
+offset_bottom = 43.2877
 texture_normal = ExtResource("7_ns4dr")
 texture_hover = ExtResource("8_168ck")
 script = SubResource("GDScript_e7fme")
 metadata/_edit_use_anchors_ = true
+
+[node name="githubbutton" type="Node2D" parent="UI"]
+scale = Vector2(0.02, 0.02)
+
+[node name="github" type="TextureButton" parent="UI/githubbutton"]
+offset_left = -958.904
+offset_top = 3013.7
+offset_right = 879.096
+offset_bottom = 4805.7
+texture_normal = ExtResource("7_5yn32")
+script = SubResource("GDScript_g1ott")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -11)
 zoom = Vector2(8, 8)
 position_smoothing_enabled = true
 
+[node name="Background" parent="." instance=ExtResource("9_wf8g6")]
+visible = false
+offset_left = -108.0
+offset_top = -70.0
+offset_right = 1043.0
+offset_bottom = 577.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="MenuSFX" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_u777y")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("9_nmr1d")
+volume_db = -17.333
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="UI/Играть" to="UI/Играть" method="_on_pressed"]
+[connection signal="pressed" from="UI/Настройки" to="UI/Настройки" method="_on_pressed"]
 [connection signal="pressed" from="UI/Выход" to="UI/Выход" method="_on_pressed"]
+[connection signal="pressed" from="UI/githubbutton/github" to="UI/githubbutton/github" method="_on_pressed"]
+[connection signal="tree_exited" from="Background" to="Background" method="_on_tree_exited"]

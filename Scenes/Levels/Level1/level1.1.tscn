@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbsxb2qo7w88f"]
+[gd_scene load_steps=11 format=3 uid="uid://bbsxb2qo7w88f"]
 
 [ext_resource type="Script" path="res://src/LevelsScripts/level1.1.gd" id="1_ce1b4"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_vnp04"]
 [ext_resource type="PackedScene" uid="uid://dguhwy6tn12is" path="res://Scenes/Prebafs/Player.tscn" id="2_7ybvo"]
 [ext_resource type="PackedScene" uid="uid://dmfw66nek0ab5" path="res://Scenes/Prebafs/Enemy.tscn" id="3_fooit"]
+[ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="5_55e86"]
+[ext_resource type="AudioStream" uid="uid://c28rfmbnk1nv" path="res://Audio/Music/Trees_Are_Watching.ogg" id="6_biq5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0um8h"]
 texture = ExtResource("1_vnp04")
@@ -1258,6 +1260,7 @@ texture = ExtResource("1_vnp04")
 4:19/0 = 0
 4:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:19/0/physics_layer_0/angular_velocity = 0.0
+4:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:19/0 = 0
 6:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:19/0/physics_layer_0/angular_velocity = 0.0
@@ -2711,7 +2714,7 @@ layer_0/tile_data = PackedInt32Array(2490369, 2686979, 1, 2490368, 2621443, 1)
 position = Vector2(-95, -26)
 tile_set = SubResource("TileSet_143es")
 format = 2
-layer_0/tile_data = PackedInt32Array(2555910, 262144, 19, 2490374, 262144, 19, 2424838, 262144, 19, 2359302, 262144, 19, 2621445, 4521984, 3, 2555909, 4521984, 3, 2490373, 4521984, 3, 2424837, 4521984, 3, 2359301, 4521984, 3, 2359300, 4521984, 3, 2359299, 4521984, 3, 2424835, 4521984, 3, 2424836, 4521984, 3, 2490372, 4521984, 3, 2490371, 4521984, 3, 2555907, 4521984, 3, 2621443, 4521984, 3, 2621444, 4521984, 3, 2555908, 4521984, 3, 2686981, 4521984, 3, 2686980, 4521984, 3, 2686979, 4521984, 3, 2359304, 4718592, 2, 2424840, 4718592, 3, 2359305, 4784128, 2, 2424841, 4784128, 3, 2359310, 4718592, 2, 2424846, 4718592, 3, 2359311, 4784128, 2, 2424847, 4784128, 3, 2359316, 4653056, 6, 2424852, 4653056, 6, 2359317, 4653056, 6, 2424853, 4653056, 6, 2555912, 2752512, 1, 2555913, 2818048, 1, 2555914, 2752512, 1, 2555915, 2818048, 1, 2555916, 2752512, 1, 2555917, 2818048, 1, 2555918, 2752512, 1, 2555919, 2818048, 1, 2555920, 2752512, 1, 2555921, 2818048, 1, 2555922, 2752512, 1, 2555923, 2818048, 1, 2555924, 4653056, 6, 2555925, 4653056, 6, 2555926, 4653056, 6, 2490387, 4653056, 6, 2490388, 4653056, 6, 2359315, 4653056, 6, 2490389, 4653056, 6, 2490390, 4653056, 6, 2359318, 4653056, 6, 2424854, 4653056, 6)
+layer_0/tile_data = PackedInt32Array(2555910, 262144, 19, 2490374, 262144, 19, 2424838, 262144, 19, 2359302, 262144, 19, 2621445, 4521984, 3, 2555909, 4521984, 3, 2490373, 4521984, 3, 2424837, 4521984, 3, 2359301, 4521984, 3, 2359300, 4521984, 3, 2359299, 4521984, 3, 2424835, 4521984, 3, 2424836, 4521984, 3, 2490372, 4521984, 3, 2490371, 4521984, 3, 2555907, 4521984, 3, 2621443, 4521984, 3, 2621444, 4521984, 3, 2555908, 4521984, 3, 2686981, 4521984, 3, 2686980, 4521984, 3, 2686979, 4521984, 3, 2359304, 4718592, 2, 2424840, 4718592, 3, 2359305, 4784128, 2, 2424841, 4784128, 3, 2359310, 4718592, 2, 2424846, 4718592, 3, 2359311, 4784128, 2, 2424847, 4784128, 3, 2359316, 4653056, 6, 2424852, 4653056, 6, 2359317, 4653056, 6, 2424853, 4653056, 6, 2555912, 2752512, 1, 2555913, 2818048, 1, 2555914, 2752512, 1, 2555915, 2818048, 1, 2555916, 2752512, 1, 2555917, 2818048, 1, 2555918, 2752512, 1, 2555919, 2818048, 1, 2555920, 2752512, 1, 2555921, 2818048, 1, 2555922, 2752512, 1, 2555923, 2818048, 1, 2555924, 4653056, 6, 2555925, 4653056, 6, 2555926, 4653056, 6, 2490387, 4653056, 6, 2490388, 4653056, 6, 2359315, 4653056, 6, 2490389, 4653056, 6, 2490390, 4653056, 6, 2359318, 4653056, 6, 2424854, 4653056, 6, 2686978, 4456448, 3, 2621442, 4456448, 3, 2555906, 4456448, 3, 2490370, 4456448, 3, 2424834, 4456448, 3, 2359298, 4456448, 3)
 
 [node name="Entity" type="Node2D" parent="."]
 
@@ -2721,12 +2724,26 @@ layer_0/tile_data = PackedInt32Array(2555910, 262144, 19, 2490374, 262144, 19, 2
 position = Vector2(47, 608)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(56, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(142, 605)
 shape = SubResource("RectangleShape2D_jygpy")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_fooit")]
-position = Vector2(175, 600)
+position = Vector2(231, 600)
+
+[node name="Background" parent="." instance=ExtResource("5_55e86")]
+offset_left = -169.0
+offset_top = 485.0
+offset_right = 982.0
+offset_bottom = 1132.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_biq5e")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Area2D" to="Player/Player" method="_on_area_2d_body_entered"]

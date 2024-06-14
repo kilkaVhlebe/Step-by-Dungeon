@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b8ea4w0mdniu4"]
+[gd_scene load_steps=22 format=3 uid="uid://b8ea4w0mdniu4"]
 
 [ext_resource type="Script" path="res://src/Systems/battle.system.gd" id="1_8vi6v"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_pntbf"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cpd38l2eydcjt" path="res://Assets/UI/стан_Focused.png" id="11_x8dpf"]
 [ext_resource type="Texture2D" uid="uid://b2735p55gqr2v" path="res://Assets/UI/Stun effect.png" id="12_06a8m"]
 [ext_resource type="Script" path="res://src/UI/StunSprite.gd" id="13_aiqei"]
+[ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="16_588ws"]
+[ext_resource type="AudioStream" uid="uid://bs0xal1g6lrtt" path="res://Audio/Music/Three Red Hearts - Pixel War 2.ogg" id="17_3qcmv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2gx4"]
 texture = ExtResource("1_pntbf")
@@ -1048,6 +1050,25 @@ position = Vector2(284, 130)
 
 [node name="CharacterBody2D" parent="Entity/Player" instance=ExtResource("2_cj6i8")]
 position = Vector2(217, 138)
+
+[node name="Background" parent="." instance=ExtResource("16_588ws")]
+visible = false
+offset_left = 13.0
+offset_top = -17.0
+offset_right = 1164.0
+offset_bottom = 630.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_3qcmv")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_3qcmv")
+volume_db = -10.4
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Map/UI/UIButtuns/Attak" to="Entity/Player/CharacterBody2D" method="_on_attak_pressed"]
 [connection signal="pressed" from="Map/UI/UIButtuns/Skip" to="Entity/Player/CharacterBody2D" method="_on_skip_pressed"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://r110uhnx35d"]
+[gd_scene load_steps=14 format=3 uid="uid://r110uhnx35d"]
 
 [ext_resource type="Script" path="res://src/LevelsScripts/level1.3.gd" id="1_cgxv4"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_nlk6o"]
 [ext_resource type="PackedScene" uid="uid://bfnaf2vd1hws4" path="res://Scenes/Prebafs/chest.tscn" id="2_qh7ri"]
 [ext_resource type="PackedScene" uid="uid://dguhwy6tn12is" path="res://Scenes/Prebafs/Player.tscn" id="3_8w7pg"]
 [ext_resource type="PackedScene" uid="uid://dmfw66nek0ab5" path="res://Scenes/Prebafs/Enemy.tscn" id="4_wa0c2"]
+[ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="6_mco8q"]
+[ext_resource type="AudioStream" uid="uid://cqcfn5xwyny1q" path="res://Audio/SFX/UI/MI_SFX 41.wav" id="7_erpl6"]
+[ext_resource type="AudioStream" uid="uid://c28rfmbnk1nv" path="res://Audio/Music/Trees_Are_Watching.ogg" id="8_for5c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ot8dd"]
 texture = ExtResource("1_nlk6o")
@@ -3608,7 +3611,7 @@ layer_0/tile_data = PackedInt32Array(2490369, 2686979, 1, 2490368, 2621443, 1)
 position = Vector2(-95, -26)
 tile_set = SubResource("TileSet_ma5bt")
 format = 2
-layer_0/tile_data = PackedInt32Array(2555910, 262144, 19, 2490374, 262144, 19, 2424838, 262144, 19, 2359302, 262144, 19, 2621445, 4521984, 3, 2555909, 4521984, 3, 2490373, 4521984, 3, 2424837, 4521984, 3, 2359301, 4521984, 3, 2359300, 4521984, 3, 2359299, 4521984, 3, 2424835, 4521984, 3, 2424836, 4521984, 3, 2490372, 4521984, 3, 2490371, 4521984, 3, 2555907, 4521984, 3, 2621443, 4521984, 3, 2621444, 4521984, 3, 2555908, 4521984, 3, 2686981, 4521984, 3, 2686980, 4521984, 3, 2686979, 4521984, 3, 2359304, 4718592, 2, 2424840, 4718592, 3, 2359305, 4784128, 2, 2424841, 4784128, 3, 2359310, 4718592, 2, 2424846, 4718592, 3, 2359311, 4784128, 2, 2424847, 4784128, 3, 2359316, 4718592, 2, 2424852, 4718592, 3, 2359317, 4784128, 2, 2424853, 4784128, 3, 2359322, 4718592, 2, 2424858, 4718592, 3, 2359323, 4784128, 2, 2424859, 4784128, 3, 2555912, 2752512, 1, 2555913, 2818048, 1, 2555914, 2752512, 1, 2555915, 2818048, 1, 2555916, 2752512, 1, 2555917, 2818048, 1, 2555918, 2752512, 1, 2555919, 2818048, 1, 2555920, 2752512, 1, 2555921, 2818048, 1, 2555922, 2752512, 1, 2555923, 2818048, 1, 2555924, 2752512, 1, 2555925, 2818048, 1, 2555926, 2752512, 1, 2555927, 2818048, 1, 2555928, 2752512, 1, 2555929, 2818048, 1, 2555930, 2752512, 1, 2555931, 2818048, 1, 2555932, 2752512, 1, 2555933, 2818048, 1, 2555934, 2752512, 1, 2555935, 2818048, 1)
+layer_0/tile_data = PackedInt32Array(2555910, 262144, 19, 2490374, 262144, 19, 2424838, 262144, 19, 2359302, 262144, 19, 2621445, 4521984, 3, 2555909, 4521984, 3, 2490373, 4521984, 3, 2424837, 4521984, 3, 2359301, 4521984, 3, 2359300, 4521984, 3, 2359299, 4521984, 3, 2424835, 4521984, 3, 2424836, 4521984, 3, 2490372, 4521984, 3, 2490371, 4521984, 3, 2555907, 4521984, 3, 2621443, 4521984, 3, 2621444, 4521984, 3, 2555908, 4521984, 3, 2686981, 4521984, 3, 2686980, 4521984, 3, 2686979, 4521984, 3, 2359304, 4718592, 2, 2424840, 4718592, 3, 2359305, 4784128, 2, 2424841, 4784128, 3, 2359310, 4718592, 2, 2424846, 4718592, 3, 2359311, 4784128, 2, 2424847, 4784128, 3, 2359316, 4718592, 2, 2424852, 4718592, 3, 2359317, 4784128, 2, 2424853, 4784128, 3, 2359322, 4718592, 2, 2424858, 4718592, 3, 2359323, 4784128, 2, 2424859, 4784128, 3, 2555912, 2752512, 1, 2555913, 2818048, 1, 2555914, 2752512, 1, 2555915, 2818048, 1, 2555916, 2752512, 1, 2555917, 2818048, 1, 2555918, 2752512, 1, 2555919, 2818048, 1, 2555920, 2752512, 1, 2555921, 2818048, 1, 2555922, 2752512, 1, 2555923, 2818048, 1, 2555924, 2752512, 1, 2555925, 2818048, 1, 2555926, 2752512, 1, 2555927, 2818048, 1, 2555928, 2752512, 1, 2555929, 2818048, 1, 2555930, 2752512, 1, 2555931, 2818048, 1, 2555932, 2752512, 1, 2555933, 2818048, 1, 2555934, 2752512, 1, 2555935, 2818048, 1, 2752515, 4521984, 3, 2752516, 4521984, 3, 2752517, 4521984, 3, 2752514, 4456448, 3, 2686978, 4456448, 3, 2621442, 4456448, 3, 2555906, 4456448, 3, 2490370, 4456448, 3, 2424834, 4456448, 3, 2359298, 4456448, 3)
 
 [node name="Interactive_elements" type="Node2D" parent="Map"]
 
@@ -3631,5 +3634,22 @@ shape = SubResource("RectangleShape2D_gm73f")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_wa0c2")]
 position = Vector2(357, 600)
+
+[node name="Background" parent="." instance=ExtResource("6_mco8q")]
+visible = false
+offset_left = -355.0
+offset_top = 412.0
+offset_right = 796.0
+offset_bottom = 1059.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_erpl6")
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_for5c")
+autoplay = true
+bus = &"Music"
 
 [connection signal="body_entered" from="Area2D" to="Player/Player" method="_on_area_2d_body_entered"]

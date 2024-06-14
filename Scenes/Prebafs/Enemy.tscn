@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmfw66nek0ab5"]
+[gd_scene load_steps=28 format=3 uid="uid://dmfw66nek0ab5"]
 
 [ext_resource type="Script" path="res://src/Entity/enemyInBattle.gd" id="1_lji2l"]
 [ext_resource type="Texture2D" uid="uid://c0qw5l7pwljyb" path="res://Assets/Enemies/enemies x1.png" id="1_vwp04"]
 [ext_resource type="Texture2D" uid="uid://mfimvak3avqb" path="res://Assets/UI/Enemy hp bar.png" id="3_4ro0v"]
 [ext_resource type="Texture2D" uid="uid://681vxgov0i6n" path="res://Assets/UI/Enemy hp bar progress.png" id="4_pbms5"]
+[ext_resource type="Texture2D" uid="uid://b2735p55gqr2v" path="res://Assets/UI/Stun effect.png" id="5_50lhr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_npwu4"]
 size = Vector2(16, 15)
@@ -188,3 +189,9 @@ value = 100.0
 texture_under = ExtResource("3_4ro0v")
 texture_progress = ExtResource("4_pbms5")
 texture_progress_offset = Vector2(2, 2)
+
+[node name="stun effect" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -43)
+scale = Vector2(0.857143, 0.857143)
+texture = ExtResource("5_50lhr")

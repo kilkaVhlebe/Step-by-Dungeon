@@ -234,3 +234,5 @@ frame_progress = 1.0
 position = Vector2(0, -11)
 zoom = Vector2(8, 8)
 position_smoothing_enabled = true
+
+[node name="MoveSFX" type="AudioStreamPlayer" parent="."]

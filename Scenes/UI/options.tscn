@@ -1,0 +1,177 @@
+[gd_scene load_steps=14 format=3 uid="uid://cx25ecr5otuah"]
+
+[ext_resource type="Script" path="res://src/Systems/Options.gd" id="1_ee8ki"]
+[ext_resource type="Texture2D" uid="uid://d6il071rfh6d" path="res://Assets/UI/menu ui/Кнопка Назад.png" id="2_5fkgk"]
+[ext_resource type="Texture2D" uid="uid://pekxpi73wmla" path="res://Assets/UI/menu ui/plus_button.png" id="2_b5pko"]
+[ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="2_sj660"]
+[ext_resource type="Texture2D" uid="uid://c7apoldu5sea5" path="res://Assets/UI/menu ui/minus_button.png" id="3_bdmsd"]
+[ext_resource type="Texture2D" uid="uid://b3vcpoepbtn71" path="res://Assets/UI/menu ui/Кнопка Назад Focused.png" id="3_jghdy"]
+[ext_resource type="AudioStream" uid="uid://ccwt8h4qrifve" path="res://Audio/SFX/UI/MI_SFX 43.wav" id="3_tgoee"]
+[ext_resource type="Texture2D" uid="uid://b4u1wiodwbdwd" path="res://Assets/UI/options_bar.png" id="4_4jfex"]
+[ext_resource type="AudioStream" uid="uid://dl3sdc8xeeewa" path="res://Audio/Music/Three Red Hearts - Penultimate.ogg" id="4_jpdky"]
+[ext_resource type="Texture2D" uid="uid://b1kmnvo7qnr38" path="res://Assets/UI/Общая громкость.png" id="7_fpsd3"]
+[ext_resource type="Texture2D" uid="uid://kr3mj8ht5rxe" path="res://Assets/UI/Громкость звуков.png" id="8_7pvx2"]
+[ext_resource type="Texture2D" uid="uid://y7ydjmqowskc" path="res://Assets/UI/Громкость музыки.png" id="8_c8u8p"]
+
+[sub_resource type="GDScript" id="GDScript_x5s78"]
+resource_name = "backButton"
+script/source = "extends TextureButton
+
+
+
+
+func _on_pressed():
+	$\"../../Audio/MenuSFX\".play()
+	get_tree().change_scene_to_file(\"res://Scenes/UI/main_menu.tscn\")
+"
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_ee8ki")
+
+[node name="MenuUI" type="Node2D" parent="."]
+scale = Vector2(0.9, 0.9)
+
+[node name="Back" type="TextureButton" parent="MenuUI"]
+offset_left = -150.0
+offset_top = 37.7778
+offset_right = -76.0
+offset_bottom = 67.7778
+texture_normal = ExtResource("2_5fkgk")
+texture_hover = ExtResource("3_jghdy")
+script = SubResource("GDScript_x5s78")
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioOptions" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Master" type="Node2D" parent="AudioOptions"]
+
+[node name="PlusButtonMaster" type="TextureButton" parent="AudioOptions/Master"]
+offset_left = 11.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -27.0
+texture_normal = ExtResource("2_b5pko")
+
+[node name="MinusButtonMaster" type="TextureButton" parent="AudioOptions/Master"]
+offset_left = -21.0
+offset_top = -34.0
+offset_right = -12.0
+offset_bottom = -27.0
+texture_normal = ExtResource("3_bdmsd")
+
+[node name="MasterBar" type="TextureProgressBar" parent="AudioOptions/Master"]
+offset_left = -9.0
+offset_top = -32.0
+offset_right = 9.0
+offset_bottom = -29.0
+min_value = -80.0
+max_value = 6.0
+texture_progress = ExtResource("4_4jfex")
+
+[node name="Sprite2D" type="Sprite2D" parent="AudioOptions/Master"]
+position = Vector2(0, -39.5)
+scale = Vector2(0.214286, 0.214286)
+texture = ExtResource("7_fpsd3")
+
+[node name="Music" type="Node2D" parent="AudioOptions"]
+position = Vector2(0, 17.5)
+
+[node name="PlusButtonMusic" type="TextureButton" parent="AudioOptions/Music"]
+offset_left = 11.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -27.0
+texture_normal = ExtResource("2_b5pko")
+metadata/_edit_use_anchors_ = true
+
+[node name="MinusButtonMusic" type="TextureButton" parent="AudioOptions/Music"]
+offset_left = -21.0
+offset_top = -34.0
+offset_right = -12.0
+offset_bottom = -27.0
+texture_normal = ExtResource("3_bdmsd")
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicBar" type="TextureProgressBar" parent="AudioOptions/Music"]
+offset_left = -9.0
+offset_top = -32.0
+offset_right = 9.0
+offset_bottom = -29.0
+min_value = -80.0
+max_value = 6.0
+texture_progress = ExtResource("4_4jfex")
+metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="Node2D" parent="AudioOptions/Music"]
+position = Vector2(0, 17.5)
+
+[node name="PlusButtonSFX" type="TextureButton" parent="AudioOptions/Music/SFX"]
+offset_left = 11.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -27.0
+texture_normal = ExtResource("2_b5pko")
+metadata/_edit_use_anchors_ = true
+
+[node name="MinusButtonSFX" type="TextureButton" parent="AudioOptions/Music/SFX"]
+offset_left = -21.0
+offset_top = -34.0
+offset_right = -12.0
+offset_bottom = -27.0
+texture_normal = ExtResource("3_bdmsd")
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXBar" type="TextureProgressBar" parent="AudioOptions/Music/SFX"]
+offset_left = -9.0
+offset_top = -32.0
+offset_right = 9.0
+offset_bottom = -29.0
+min_value = -80.0
+max_value = 6.0
+texture_progress = ExtResource("4_4jfex")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="AudioOptions/Music/SFX"]
+position = Vector2(0, -39.5)
+scale = Vector2(0.214286, 0.214286)
+texture = ExtResource("8_7pvx2")
+
+[node name="Sprite2D" type="Sprite2D" parent="AudioOptions/Music"]
+position = Vector2(0, -39.5)
+scale = Vector2(0.214286, 0.214286)
+texture = ExtResource("8_c8u8p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -11)
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="Background" parent="." instance=ExtResource("2_sj660")]
+visible = false
+offset_left = -214.0
+offset_top = -129.0
+offset_right = 937.0
+offset_bottom = 518.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="MenuSFX" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("3_tgoee")
+volume_db = -1.387
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("4_jpdky")
+volume_db = -17.333
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="MenuUI/Back" to="MenuUI/Back" method="_on_pressed"]
+[connection signal="pressed" from="AudioOptions/Master/PlusButtonMaster" to="." method="_on_plus_button_master_pressed"]
+[connection signal="pressed" from="AudioOptions/Master/MinusButtonMaster" to="." method="_on_minus_button_master_pressed"]
+[connection signal="pressed" from="AudioOptions/Music/PlusButtonMusic" to="." method="_on_plus_button_music_pressed"]
+[connection signal="pressed" from="AudioOptions/Music/MinusButtonMusic" to="." method="_on_minus_button_music_pressed"]
+[connection signal="pressed" from="AudioOptions/Music/SFX/PlusButtonSFX" to="." method="_on_plus_button_sfx_pressed"]
+[connection signal="pressed" from="AudioOptions/Music/SFX/MinusButtonSFX" to="." method="_on_minus_button_sfx_pressed"]
+[connection signal="tree_exited" from="Background" to="Background" method="_on_tree_exited"]

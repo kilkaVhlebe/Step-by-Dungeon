@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ck87xdg4g8i2l"]
+[gd_scene load_steps=6 format=3 uid="uid://ck87xdg4g8i2l"]
 
 [ext_resource type="Texture2D" uid="uid://bv7luauqopwkq" path="res://Assets/Items/energy barier.png" id="1_jhydg"]
 [ext_resource type="Script" path="res://src/Items/energy_barier.gd" id="1_pnn2g"]
 [ext_resource type="Texture2D" uid="uid://ci40pfbxbe5yi" path="res://Assets/UI/item_label_3.png" id="2_dr8ks"]
+[ext_resource type="AudioStream" uid="uid://cqcfn5xwyny1q" path="res://Audio/SFX/UI/MI_SFX 41.wav" id="4_u7unn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v14ha"]
 size = Vector2(17, 12)
@@ -25,6 +26,9 @@ visible = false
 position = Vector2(0, -28)
 scale = Vector2(0.148, 0.148)
 texture = ExtResource("2_dr8ks")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u7unn")
 
 [connection signal="body_entered" from="enterArea" to="." method="_on_enter_area_body_entered"]
 [connection signal="body_exited" from="enterArea" to="." method="_on_enter_area_body_exited"]

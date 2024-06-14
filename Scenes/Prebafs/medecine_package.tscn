@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl4ff70g5lvai"]
+[gd_scene load_steps=6 format=3 uid="uid://dl4ff70g5lvai"]
 
 [ext_resource type="Script" path="res://src/Items/medecine_package.gd" id="1_76wue"]
 [ext_resource type="Texture2D" uid="uid://3f8rgf0cv1qm" path="res://Assets/Items/medecine packege.png" id="1_jyw1l"]
 [ext_resource type="Texture2D" uid="uid://c0o25kqhwc6bt" path="res://Assets/UI/item_label_2.png" id="3_05qj2"]
+[ext_resource type="AudioStream" uid="uid://cqcfn5xwyny1q" path="res://Audio/SFX/UI/MI_SFX 41.wav" id="4_4a8n1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_utou7"]
 size = Vector2(17, 12)
@@ -25,6 +26,9 @@ visible = false
 position = Vector2(0, -25)
 scale = Vector2(0.148, 0.148)
 texture = ExtResource("3_05qj2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_4a8n1")
 
 [connection signal="body_entered" from="enterArea" to="." method="_on_enter_area_body_entered"]
 [connection signal="body_exited" from="enterArea" to="." method="_on_enter_area_body_exited"]
