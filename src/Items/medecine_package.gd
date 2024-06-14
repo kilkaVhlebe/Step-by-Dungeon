@@ -25,6 +25,7 @@ func _on_enter_area_body_exited(body):
 		
 func equip():
 	if LevelState.playerItemsList.find("medecin_package") == -1:
+		$"../../../../Audio/SFX".play()
 		LevelState.playerItemsList.append("medecin_package")
 		queue_free()
 

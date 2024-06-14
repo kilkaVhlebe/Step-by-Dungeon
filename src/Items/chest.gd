@@ -43,6 +43,6 @@ func open_chest():
 		closed = false
 		$closed_chest.visible = false
 		$open_chest.visible = true
-		
+		$"../../../Audio/SFX".play()
 		label.queue_free()
 		add_child(item)

@@ -16,18 +16,24 @@ extends CharacterBody2D
 @onready var hpBar = $"../../../Map/UI/PlayerHpBar"
 @onready var energyBar = $"../../../Map/UI/PlayerEnergyBar"
 
+@onready var SFX = $"../../../Audio/SFX"
+var ShootSound = preload("res://Audio/SFX/Battle/Retro Weapon Gun LoFi 03.wav")
+var StunSound = preload("res://Audio/SFX/Battle/Retro Shot 23.wav")
+var UIsfx = preload("res://Audio/SFX/UI/MI_SFX 43.wav")
+
 var maxHealth = 200
 var currentHealth = maxHealth
 var energyCapacity = 100
 var currentEnergy = energyCapacity
 var currentEnemy = enemy
-var resistValue = 10
-
+var stunColdown = 0
 
 var isStanned = false
 var isAttacking = false
 var isStunning = false
 var isSkip = false
+
+
 
 
 func _ready():
@@ -57,7 +63,7 @@ func onStep():
 	print("player step")
 
 func takeDamage(damageValue):
-	currentHealth -= damageValue - resistValue
+	currentHealth -= damageValue
 	hpBar.value = currentHealth
 	if currentHealth <= 0:
 		animation.play("death")
@@ -71,6 +77,8 @@ func _on_attak_pressed():
 		currentEnergy -= 15
 		energyBar.value = currentEnergy
 		animation.play("shoot")
+		SFX.stream = ShootSound
+		SFX.play()
 		currentEnemy.takeDamage(50)
 		if LevelState.playerItemsList.find("shotgun") != -1:
 			print("shotgun is shooting")
@@ -83,6 +91,8 @@ func _on_attak_pressed():
 
 func _on_skip_pressed():
 	uiButtons.visible = false
+	SFX.stream = UIsfx
+	SFX.play()
 	battleSystem.endStep()
 
 func _on_stun_pressed():
@@ -91,7 +101,10 @@ func _on_stun_pressed():
 		currentEnergy -= 40
 		energyBar.value = currentEnergy
 		currentEnemy.isStanned = true
+		currentEnemy.stunColdown = randi_range(1,3)
 		animation.play("shoot")
+		SFX.stream = StunSound
+		SFX.play()
 		currentEnemy.takeDamage(10)
 		await animation.animation_finished
 		animation.play("reload")

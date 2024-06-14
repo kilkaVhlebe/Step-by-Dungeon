@@ -6,13 +6,12 @@ var isStepNow = false
 @onready var enemy = $Entity/Enemies/CharacterBody2D
 @onready var enemy2 = $"Entity/Enemies/2CharacterBody2D"
 
-var aliveEnemys = 2
 
 var batlleResult
 
 var stepCounter = 0
 
-var energyBarierColdown = 0
+var energyBarierColdown = 3
 
 
 func _ready():
@@ -43,9 +42,10 @@ func endStep():
 	if energyBarierColdown > 0:
 		energyBarierColdown -= 1
 		
-	if query[0] != null and query[0].isStanned:
+	if query[0] != null and query[0].isStanned and query[0].stunColdown == 0:
 		query[0].isStanned = false
 	elif query[0] != null:
+		query[0].stunColdown -= 1
 		stepCounter += 1
 		
 	query.remove_at(0)
@@ -67,8 +67,7 @@ func stepColdown():
 func endBattle(result):
 	match result:
 		"lose":
-			get_tree().change_scene_to_file("res://Scenes/Levels/Dev_lvl.tscn")
+			get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
 		"win":
 			if LevelState.allSecenesPaths.find(LevelState.currentLevel) < LevelState.allSecenesPaths.size() -1 :
 				get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
-

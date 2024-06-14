@@ -24,6 +24,7 @@ func _on_enter_area_body_exited(body):
 		
 func equip():
 	if LevelState.playerItemsList.find("energy_barier") == -1:
+		$"../../../../Audio/SFX".play()
 		LevelState.playerItemsList.append("energy_barier")
 		queue_free()
 
