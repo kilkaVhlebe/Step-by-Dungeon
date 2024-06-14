@@ -13,7 +13,7 @@ git clone https://github.com/tugaserya/Step-by-Dungeon.git
 
 cd Step-by-Dungeon
 ```
-[Download asstes](https://trevor-pupkin.itch.io/tech-dungeon-roguelite).
+[Download all asstes](https://kilkavhlebe.itch.io/step-by-dungeon).
 Create folder with name `Assets` and move all assets from archive to folder.
 In godot project manager import this project.
 
