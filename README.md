@@ -2,6 +2,7 @@
 ## Description
 I want make a simple web auto batller, but it metamorphosed in something like J-RPG.
 [Basic game assets](https://trevor-pupkin.itch.io/tech-dungeon-roguelite).
+Play it on [itch.io](https://kilkavhlebe.itch.io/step-by-dungeon)
 
 ## Installation
 
