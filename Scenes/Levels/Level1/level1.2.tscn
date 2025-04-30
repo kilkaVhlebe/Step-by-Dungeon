@@ -4531,6 +4531,7 @@ shape = SubResource("RectangleShape2D_td6hv")
 position = Vector2(357, 600)
 
 [node name="Background" parent="." instance=ExtResource("6_3ajkj")]
+visible = false
 offset_left = -103.0
 offset_top = 365.0
 offset_right = 1048.0

@@ -1,0 +1,195 @@
+[gd_scene load_steps=13 format=3 uid="uid://bdenecf1yvcox"]
+
+[ext_resource type="Texture2D" uid="uid://bsjbjdbr6f4w1" path="res://Assets/UI/Tree ui/tree_background.png" id="1_kxmle"]
+[ext_resource type="Texture2D" uid="uid://dxxhn6m80pkud" path="res://Assets/UI/Tree ui/attack_baff.png" id="2_k5ayr"]
+[ext_resource type="Texture2D" uid="uid://sv46yap2mkbw" path="res://Assets/UI/Tree ui/energy_baff.png" id="3_nkyps"]
+[ext_resource type="Texture2D" uid="uid://cfgilpsd52fs3" path="res://Assets/UI/Tree ui/hp_baff.png" id="4_olhty"]
+[ext_resource type="Texture2D" uid="uid://dm7v0s3u6ycgj" path="res://Assets/UI/icons/scrap_icon.png" id="5_uosk8"]
+[ext_resource type="Texture2D" uid="uid://bfaftsk8m6ui" path="res://Assets/UI/menu ui/Кнопка Выход.png" id="6_hre0w"]
+[ext_resource type="Texture2D" uid="uid://djgrnimj1ehgr" path="res://Assets/UI/menu ui/Кнопка Выход Focused.png" id="7_w33d1"]
+
+[sub_resource type="GDScript" id="GDScript_rsm7s"]
+resource_name = "atkbutton"
+script/source = "extends TextureButton
+
+func _ready():
+	$stat.text = \"УР: \" + str(AutoSaveLoad.atkBuffLvl) + \" ATK: +\" + str(AutoSaveLoad.atkBuff)
+
+func _on_pressed():
+	if AutoSaveLoad.scrapValue >= 250 and AutoSaveLoad.atkBuffLvl < 5:
+		AutoSaveLoad.scrapValue -= 250
+		AutoSaveLoad.atkBuffLvl +=1
+		AutoSaveLoad.atkBuff += 10
+		$stat.text = \"УР: \" + str(AutoSaveLoad.atkBuffLvl) + \" ATK: +\" + str(AutoSaveLoad.atkBuff)
+		AutoSaveLoad.saveGame()
+"
+
+[sub_resource type="GDScript" id="GDScript_ra8mc"]
+resource_name = "energybutton"
+script/source = "extends TextureButton
+
+func _ready():
+	$stat.text = \"УР: \" + str(AutoSaveLoad.energyBuffLvl) + \" ЭНЕР: +\" + str(AutoSaveLoad.energyBuff)
+
+func _on_pressed():
+	if AutoSaveLoad.scrapValue >= 250 and AutoSaveLoad.energyBuffLvl < 5:
+		AutoSaveLoad.scrapValue -= 250
+		AutoSaveLoad.energyBuffLvl +=1
+		AutoSaveLoad.energyBuff += 10
+		$stat.text = \"УР: \" + str(AutoSaveLoad.energyBuffLvl) + \" ЭНЕР: +\" + str(AutoSaveLoad.energyBuff)
+		AutoSaveLoad.saveGame()
+"
+
+[sub_resource type="GDScript" id="GDScript_solc4"]
+resource_name = "hpbutton"
+script/source = "extends TextureButton
+
+func _ready():
+	$stat.text = \"УР: \" + str(AutoSaveLoad.hpBuffLvl) + \" ХП: +\" + str(AutoSaveLoad.hpBuff)
+
+func _on_pressed():
+	if AutoSaveLoad.scrapValue >= 250 and AutoSaveLoad.hpBuffLvl < 5:
+		AutoSaveLoad.scrapValue -= 250
+		AutoSaveLoad.hpBuffLvl +=1
+		AutoSaveLoad.hpBuff += 10
+		$stat.text = \"УР: \" + str(AutoSaveLoad.hpBuffLvl) + \" ХП: +\" + str(AutoSaveLoad.hpBuff)
+		AutoSaveLoad.saveGame()
+"
+
+[sub_resource type="GDScript" id="GDScript_dulkx"]
+resource_name = "scrapValue"
+script/source = "extends Sprite2D
+
+func _process(delta):
+	$scrapValue.text = str(AutoSaveLoad.scrapValue)
+"
+
+[sub_resource type="GDScript" id="GDScript_yo88q"]
+resource_name = "exitButton"
+script/source = "extends TextureButton
+
+
+@onready var manager = $\".\".script
+
+func _on_pressed():
+	manager.gamePaused = false
+"
+
+[node name="TreeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backgraund" type="Sprite2D" parent="."]
+position = Vector2(575, 324.5)
+scale = Vector2(4.5, 5.07031)
+texture = ExtResource("1_kxmle")
+
+[node name="Instruction" type="Label" parent="."]
+offset_left = 493.0
+offset_top = 57.0
+offset_right = 1117.0
+offset_bottom = 597.0
+theme_override_font_sizes/font_size = 42
+text = "Это меню прокачки. Что бы прокачать стат нажми на его иконку. 
+
+Уровней у каждого стата 5.
+Стоимость одной прокачки
+250 "
+horizontal_alignment = 3
+autowrap_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 76.0
+offset_right = 67.0
+offset_bottom = 180.0
+scale = Vector2(3.78, 3.78)
+alignment = 1
+
+[node name="AttakSkill" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_k5ayr")
+stretch_mode = 0
+script = SubResource("GDScript_rsm7s")
+
+[node name="stat" type="Label" parent="VBoxContainer/AttakSkill"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -2.0
+offset_right = 346.0
+offset_bottom = 120.0
+scale = Vector2(0.28, 0.28)
+theme_override_font_sizes/font_size = 40
+text = "АТК: +0"
+autowrap_mode = 3
+
+[node name="EnergySkill" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_nkyps")
+stretch_mode = 0
+script = SubResource("GDScript_ra8mc")
+
+[node name="stat" type="Label" parent="VBoxContainer/EnergySkill"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 334.0
+offset_bottom = 112.0
+scale = Vector2(0.28, 0.28)
+theme_override_font_sizes/font_size = 40
+text = "ЭНР: +0"
+autowrap_mode = 3
+
+[node name="HPSkill" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_olhty")
+stretch_mode = 0
+script = SubResource("GDScript_solc4")
+
+[node name="stat" type="Label" parent="VBoxContainer/HPSkill"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 336.0
+offset_bottom = 120.0
+scale = Vector2(0.28, 0.28)
+theme_override_font_sizes/font_size = 40
+text = "ХП: +0"
+autowrap_mode = 3
+
+[node name="ScrapIcon" type="Sprite2D" parent="."]
+position = Vector2(75, 570)
+scale = Vector2(2.4375, 2.4375)
+texture = ExtResource("5_uosk8")
+script = SubResource("GDScript_dulkx")
+
+[node name="scrapValue" type="Label" parent="ScrapIcon"]
+offset_left = 30.7692
+offset_top = -16.4103
+offset_right = 135.769
+offset_bottom = 25.5897
+theme_override_font_sizes/font_size = 30
+text = "0"
+
+[node name="ScrapIcon2" type="Sprite2D" parent="."]
+position = Vector2(631, 438)
+scale = Vector2(3, 3)
+texture = ExtResource("5_uosk8")
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 490.0
+offset_right = 1084.0
+offset_bottom = 606.0
+texture_normal = ExtResource("6_hre0w")
+texture_focused = ExtResource("7_w33d1")
+stretch_mode = 0
+script = SubResource("GDScript_yo88q")
+
+[connection signal="pressed" from="VBoxContainer/AttakSkill" to="VBoxContainer/AttakSkill" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/EnergySkill" to="VBoxContainer/EnergySkill" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HPSkill" to="VBoxContainer/HPSkill" method="_on_pressed"]

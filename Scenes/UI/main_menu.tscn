@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpxwbwumid4ud"]
+[gd_scene load_steps=16 format=3 uid="uid://dpxwbwumid4ud"]
 
 [ext_resource type="Texture2D" uid="uid://e2uvb1etoeyc" path="res://Assets/UI/menu ui/Кнопка Играть.png" id="1_ph0e7"]
 [ext_resource type="Texture2D" uid="uid://jpoc1vd86fn2" path="res://Assets/UI/menu ui/Кнопка Играть Focused.png" id="2_5doy0"]
@@ -11,6 +11,16 @@
 [ext_resource type="AudioStream" uid="uid://dl3sdc8xeeewa" path="res://Audio/Music/Three Red Hearts - Penultimate.ogg" id="9_nmr1d"]
 [ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="9_wf8g6"]
 
+[sub_resource type="GDScript" id="GDScript_7uumr"]
+resource_name = "start"
+script/source = "extends Node2D
+
+
+func _ready():
+	AutoSaveLoad.scrapValue = 2500
+	AutoSaveLoad.saveGame()
+"
+
 [sub_resource type="GDScript" id="GDScript_d4aus"]
 resource_name = "playButton"
 script/source = "extends TextureButton
@@ -19,7 +29,7 @@ script/source = "extends TextureButton
 
 func _on_pressed():
 	$\"../../Audio/MenuSFX\".play()
-	get_tree().change_scene_to_file(\"res://Scenes/Levels/Level1/level1.1.tscn\")
+	get_tree().change_scene_to_file(\"res://Scenes/Levels/hub_scene.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_sfwm2"]
@@ -53,6 +63,7 @@ func _on_pressed():
 "
 
 [node name="MainMenu" type="Node2D"]
+script = SubResource("GDScript_7uumr")
 
 [node name="UI" type="Node2D" parent="."]
 position = Vector2(0, -10)
