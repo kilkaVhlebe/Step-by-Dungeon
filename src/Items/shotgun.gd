@@ -23,8 +23,8 @@ func _on_enter_area_body_exited(body):
 		PlayerIsNear = false
 		
 func equip():
-	if LevelState.playerItemsList.find("shotgun") == -1:
+	if RunState.playerItemsList.find("shotgun") == -1:
 		$"../../../../Audio/SFX".play()
-		LevelState.playerItemsList.append("shotgun")
+		RunState.playerItemsList.append("shotgun")
 		queue_free()
 

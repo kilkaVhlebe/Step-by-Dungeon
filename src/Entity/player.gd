@@ -7,11 +7,15 @@ const SPEED = 50.0
 func _ready():
 	pass
 
-func _physics_process(delta):
+func _process(delta):
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction != 0: get_input(delta, direction)
 	
+	$Camera2D/UI/Credits/creditValue.text = str(RunState.creditsValue)
 	
+	$Camera2D/UI/Scrap/scrapValue.text = str(AutoSaveLoad.scrapValue)
+	
+
 func get_input(delta, direction):
 	velocity.x = direction * SPEED
 	animation.play("run" if direction else "idle")

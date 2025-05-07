@@ -21,11 +21,13 @@ var ShootSound = preload("res://Audio/SFX/Battle/Retro Weapon Gun LoFi 03.wav")
 var StunSound = preload("res://Audio/SFX/Battle/Retro Shot 23.wav")
 var UIsfx = preload("res://Audio/SFX/UI/MI_SFX 43.wav")
 
-var maxHealth = 200
+var maxHealth = 200 + AutoSaveLoad.hpBuff
 var currentHealth = maxHealth
-var energyCapacity = 100
+var energyCapacity = 100 + AutoSaveLoad.energyBuff
 var currentEnergy = energyCapacity
 var currentEnemy = enemy
+var atk = 50 + AutoSaveLoad.atkBuff
+
 var stunColdown = 0
 
 var isStanned = false
@@ -41,7 +43,7 @@ func _ready():
 	hpBar.max_value = maxHealth
 	hpBar.value = currentHealth
 	
-	if LevelState.playerItemsList.find("energy_barier") == -1:
+	if RunState.playerItemsList.find("energy_barier") == -1:
 		energyBar.max_value = energyCapacity
 		energyBar.value = currentEnergy
 	else:
@@ -79,8 +81,8 @@ func _on_attak_pressed():
 		animation.play("shoot")
 		SFX.stream = ShootSound
 		SFX.play()
-		currentEnemy.takeDamage(50)
-		if LevelState.playerItemsList.find("shotgun") != -1:
+		currentEnemy.takeDamage(atk)
+		if RunState.playerItemsList.find("shotgun") != -1:
 			print("shotgun is shooting")
 			get_tree().call_group("Enemy", "takeDamage", 10)
 		await animation.animation_finished

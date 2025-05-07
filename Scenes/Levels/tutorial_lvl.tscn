@@ -1,43 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6f4nog1eppu0"]
+[gd_scene load_steps=15 format=3 uid="uid://cwcp36i3wkq2s"]
 
-[ext_resource type="PackedScene" uid="uid://dguhwy6tn12is" path="res://Scenes/Prebafs/Player.tscn" id="2_0n62d"]
-[ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="2_7csce"]
-[ext_resource type="PackedScene" uid="uid://bdenecf1yvcox" path="res://Scenes/UI/tree_menu.tscn" id="3_a8kud"]
-[ext_resource type="FontFile" uid="uid://dog75r1i8nw53" path="res://Assets/Items/TTLakes-Medium.ttf" id="3_fyx2m"]
-[ext_resource type="PackedScene" uid="uid://dlrwyr45decns" path="res://Scenes/UI/dialog_window.tscn" id="4_2jyoj"]
-[ext_resource type="Script" path="res://src/UI/treeOfSkills.gd" id="4_kmsaq"]
-[ext_resource type="PackedScene" uid="uid://bssvyeb84d7ue" path="res://Scenes/UI/escape_menu.tscn" id="6_dmg13"]
+[ext_resource type="Texture2D" uid="uid://dhjoqu1rthdwn" path="res://Assets/locations/background_matrix.png" id="1_01aml"]
+[ext_resource type="PackedScene" uid="uid://dlrwyr45decns" path="res://Scenes/UI/dialog_window.tscn" id="2_pvpfq"]
+[ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="2_rnkrh"]
+[ext_resource type="PackedScene" uid="uid://bssvyeb84d7ue" path="res://Scenes/UI/escape_menu.tscn" id="3_jmle5"]
+[ext_resource type="Script" path="res://src/Dialogs/tutorialDialogs.gd" id="3_vg133"]
+[ext_resource type="PackedScene" uid="uid://dguhwy6tn12is" path="res://Scenes/Prebafs/Player.tscn" id="5_md484"]
+[ext_resource type="FontFile" uid="uid://dog75r1i8nw53" path="res://Assets/Items/TTLakes-Medium.ttf" id="5_mu1jj"]
 
-[sub_resource type="GDScript" id="GDScript_a0ioc"]
-resource_name = "hubScene"
-script/source = "extends Node2D
-
-var playerIsNearExit: bool
-@onready var dialog = $CanvasLayer/dialogWindow
-
-func _ready():
-	if AutoSaveLoad.tuturialComplete == false:
-		dialog.start_dialog(AllDialogLines.lastTutorialLines)
-		AutoSaveLoad.tuturialComplete = true
-		AutoSaveLoad.saveGame()
-
-func _on_enter_body_entered(body):
-	if body.name == \"Player\":
-		$Map/interactive/exitOnRun/Label.show()
-		playerIsNearExit = true
-
-func _on_enter_body_exited(body):
-	if body.name == \"Player\":
-		$Map/interactive/exitOnRun/Label.hide()
-		playerIsNearExit = false
-		
-func _input(event):
-	if playerIsNearExit == true and event.is_action_pressed(\"interface_with\"):
-		get_tree().change_scene_to_file(\"res://Scenes/Levels/Level1/level1.1.tscn\")
-"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pp3lo"]
-texture = ExtResource("2_7csce")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jedht"]
+texture = ExtResource("2_rnkrh")
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
@@ -929,11 +901,11 @@ texture = ExtResource("2_7csce")
 48:45/0 = 0
 49:45/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_r6n81"]
-sources/2 = SubResource("TileSetAtlasSource_pp3lo")
+[sub_resource type="TileSet" id="TileSet_he3os"]
+sources/0 = SubResource("TileSetAtlasSource_jedht")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7y1ad"]
-texture = ExtResource("2_7csce")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwe3h"]
+texture = ExtResource("2_rnkrh")
 4:0/0 = 0
 4:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2059,7 +2031,7 @@ texture = ExtResource("2_7csce")
 2:16/0 = 0
 2:16/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:16/0/physics_layer_0/angular_velocity = 0.0
-2:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+2:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.0625, -8, -0.9375, 8, -8, 8)
 8:16/0 = 0
 8:16/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:16/0/physics_layer_0/angular_velocity = 0.0
@@ -2075,7 +2047,7 @@ texture = ExtResource("2_7csce")
 19:16/0 = 0
 19:16/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:16/0/physics_layer_0/angular_velocity = 0.0
-19:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+19:16/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 40:16/0 = 0
 40:16/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 40:16/0/physics_layer_0/angular_velocity = 0.0
@@ -2091,7 +2063,7 @@ texture = ExtResource("2_7csce")
 2:17/0 = 0
 2:17/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:17/0/physics_layer_0/angular_velocity = 0.0
-2:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+2:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:17/0 = 0
 8:17/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:17/0/physics_layer_0/angular_velocity = 0.0
@@ -2107,7 +2079,7 @@ texture = ExtResource("2_7csce")
 19:17/0 = 0
 19:17/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:17/0/physics_layer_0/angular_velocity = 0.0
-19:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+19:17/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 40:17/0 = 0
 40:17/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 40:17/0/physics_layer_0/angular_velocity = 0.0
@@ -2129,11 +2101,11 @@ texture = ExtResource("2_7csce")
 4:18/0 = 0
 4:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:18/0/physics_layer_0/angular_velocity = 0.0
-4:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+4:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.0625, -8, -0.9375, 8, -8, 8)
 6:18/0 = 0
 6:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:18/0/physics_layer_0/angular_velocity = 0.0
-6:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+6:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.0625, -8, -0.9375, 8, -8, 8)
 8:18/0 = 0
 8:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:18/0/physics_layer_0/angular_velocity = 0.0
@@ -2149,11 +2121,11 @@ texture = ExtResource("2_7csce")
 15:18/0 = 0
 15:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 15:18/0/physics_layer_0/angular_velocity = 0.0
-15:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+15:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 17:18/0 = 0
 17:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:18/0/physics_layer_0/angular_velocity = 0.0
-17:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+17:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 18:18/0 = 0
 18:18/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:18/0/physics_layer_0/angular_velocity = 0.0
@@ -2193,11 +2165,11 @@ texture = ExtResource("2_7csce")
 4:19/0 = 0
 4:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:19/0/physics_layer_0/angular_velocity = 0.0
-4:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+4:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.0625, -8, -0.9375, 8, -8, 8)
 6:19/0 = 0
 6:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:19/0/physics_layer_0/angular_velocity = 0.0
-6:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.0625, -8, 0.0625, 8, -8, 8)
+6:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -1.0625, -8, -0.9375, 8, -8, 8)
 8:19/0 = 0
 8:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:19/0/physics_layer_0/angular_velocity = 0.0
@@ -2213,11 +2185,11 @@ texture = ExtResource("2_7csce")
 15:19/0 = 0
 15:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 15:19/0/physics_layer_0/angular_velocity = 0.0
-15:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+15:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 17:19/0 = 0
 17:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 17:19/0/physics_layer_0/angular_velocity = 0.0
-17:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 0.0625, -8, 0.0625, 8, 8, 8)
+17:19/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -1.0625, -8, -0.9375, 8, 8, 8)
 18:19/0 = 0
 18:19/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:19/0/physics_layer_0/angular_velocity = 0.0
@@ -3617,168 +3589,107 @@ texture = ExtResource("2_7csce")
 49:45/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 49:45/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSet" id="TileSet_lvo2f"]
+[sub_resource type="TileSet" id="TileSet_fw24u"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_7y1ad")
+sources/0 = SubResource("TileSetAtlasSource_dwe3h")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6vn5"]
-size = Vector2(39, 37.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l52hc"]
+size = Vector2(55, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xllkd"]
-size = Vector2(31, 22)
+[sub_resource type="GDScript" id="GDScript_big52"]
+resource_name = "tutorialBattleTrigger"
+script/source = "extends Area2D
 
-[sub_resource type="GDScript" id="GDScript_qk24d"]
-resource_name = "ventDialog"
-script/source = "extends Node2D
+var playerIsNear: bool = false
 
-var playerIsNear: bool
-@onready var dialog = $\"../../../CanvasLayer/dialogWindow\"
-
-func _input(event):
-	if playerIsNear == true and event.is_action_pressed(\"interface_with\"):
-		dialog.start_dialog(AllDialogLines.ventHubLine)
-
-
-func _on_vent_body_entered(body):
+func _on_body_entered(body):
 	if body.name == \"Player\":
 		playerIsNear = true
+		$Label.show()
 
-func _on_vent_body_exited(body):
-	if body.name == \"Player\":
-		playerIsNear = false
+
+func _on_body_exited(body):
+		if body.name == \"Player\":
+			playerIsNear = false
+			$Label.hide()
+			
+func _input(event):
+	if playerIsNear == true and event.is_action_pressed(\"interface_with\"):
+		get_tree().change_scene_to_file(\"res://Scenes/Levels/battle_lvl.tscn\")
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_unt6t"]
-size = Vector2(32, 31.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sej1g"]
+size = Vector2(42, 39.5)
 
-[node name="hubScene" type="Node2D"]
-script = SubResource("GDScript_a0ioc")
+[node name="tutorialLvl" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(231, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(129, 272)
+texture = ExtResource("1_01aml")
+
+[node name="Player" parent="." instance=ExtResource("5_md484")]
+position = Vector2(35, 634)
 
 [node name="Map" type="Node2D" parent="."]
 
-[node name="Background" type="Node2D" parent="Map"]
-
-[node name="Main map" type="Node2D" parent="Map"]
-
-[node name="TileMap3" type="TileMap" parent="Map/Main map"]
-position = Vector2(1, -10)
-tile_set = SubResource("TileSet_r6n81")
+[node name="TileMap" type="TileMap" parent="Map"]
+tile_set = SubResource("TileSet_he3os")
 format = 2
-layer_0/tile_data = PackedInt32Array(2555904, 4194306, 4, 2621440, 4194306, 5, 2555905, 4259842, 4, 2621441, 4259842, 5, 2555912, 4194306, 4, 2621448, 4194306, 5, 2555913, 4259842, 4, 2621449, 4259842, 5, 2555920, 4194306, 4, 2621456, 4194306, 5, 2555921, 4259842, 4, 2621457, 4259842, 5, 2424832, 4456450, 2, 2490368, 4456450, 3, 2424833, 4521986, 2, 2490369, 4521986, 3, 2424834, 4456450, 2, 2490370, 4456450, 3, 2424835, 4521986, 2, 2490371, 4521986, 3, 2555906, 4456450, 2, 2621442, 4456450, 3, 2555907, 4521986, 2, 2621443, 4521986, 3, 2424836, 4456450, 2, 2490372, 4456450, 3, 2424837, 4521986, 2, 2490373, 4521986, 3, 2424838, 4456450, 2, 2490374, 4456450, 3, 2424839, 4521986, 2, 2490375, 4521986, 3, 2555910, 4456450, 2, 2621446, 4456450, 3, 2555911, 4521986, 2, 2621447, 4521986, 3, 2424840, 4456450, 2, 2490376, 4456450, 3, 2424841, 4521986, 2, 2490377, 4521986, 3, 2424842, 4456450, 2, 2490378, 4456450, 3, 2424843, 4521986, 2, 2490379, 4521986, 3, 2555914, 4456450, 2, 2621450, 4456450, 3, 2555915, 4521986, 2, 2621451, 4521986, 3, 2424844, 4456450, 2, 2490380, 4456450, 3, 2424845, 4521986, 2, 2490381, 4521986, 3, 2424846, 4456450, 2, 2490382, 4456450, 3, 2424847, 4521986, 2, 2490383, 4521986, 3, 2555918, 4456450, 2, 2621454, 4456450, 3, 2555919, 4521986, 2, 2621455, 4521986, 3, 2424848, 4456450, 2, 2490384, 4456450, 3, 2424849, 4521986, 2, 2490385, 4521986, 3, 2424850, 4456450, 2, 2490386, 4456450, 3, 2424851, 4521986, 2, 2490387, 4521986, 3, 2555922, 4456450, 2, 2621458, 4456450, 3, 2555923, 4521986, 2, 2621459, 4521986, 3, 2424852, 4456450, 2, 2490388, 4456450, 3, 2424853, 4521986, 2, 2490389, 4521986, 3, 2424854, 4456450, 2, 2490390, 4456450, 3, 2424855, 4521986, 2, 2490391, 4521986, 3, 2555926, 4456450, 2, 2621462, 4456450, 3, 2555927, 4521986, 2, 2621463, 4521986, 3, 2555908, 4587522, 4, 2555909, 4653058, 4, 2621444, 4194306, 2, 2621445, 4259842, 2)
+layer_0/tile_data = PackedInt32Array(2555915, 4653056, 6, 2490379, 4587520, 4, 2555916, 4259840, 5, 2555914, 4194304, 5, 2490378, 4194304, 4, 2490380, 4259840, 4, 2424842, 2359296, 45, 2424843, 3407872, 35, 2424844, 3211264, 45)
 
-[node name="TileMap" type="TileMap" parent="Map/Main map"]
-position = Vector2(-95, -26)
-tile_set = SubResource("TileSet_lvo2f")
+[node name="mainTiles" type="TileMap" parent="Map"]
+tile_set = SubResource("TileSet_fw24u")
 format = 2
-layer_0/tile_data = PackedInt32Array(2752520, 655360, 20, 2818056, 655360, 21, 2752521, 720896, 20, 2818057, 720896, 21, 2752522, 655360, 20, 2818058, 655360, 21, 2752523, 720896, 20, 2818059, 720896, 21, 2752524, 655360, 20, 2818060, 655360, 21, 2752525, 720896, 20, 2818061, 720896, 21, 2752526, 655360, 20, 2818062, 655360, 21, 2752527, 720896, 20, 2818063, 720896, 21, 2752528, 655360, 20, 2818064, 655360, 21, 2752529, 720896, 20, 2818065, 720896, 21, 2752530, 655360, 20, 2818066, 655360, 21, 2752531, 720896, 20, 2818067, 720896, 21, 2752532, 655360, 20, 2818068, 655360, 21, 2752533, 720896, 20, 2818069, 720896, 21, 2752534, 655360, 20, 2818070, 655360, 21, 2752535, 720896, 20, 2818071, 720896, 21, 2818072, 655360, 21, 2752537, 720896, 20, 2818073, 720896, 21, 2752538, 655360, 20, 2818074, 655360, 21, 2752539, 720896, 20, 2818075, 720896, 21, 2752518, 262144, 20, 2818054, 262144, 21, 2752519, 327680, 20, 2818055, 327680, 21, 2752540, 1048576, 20, 2818076, 1048576, 21, 2752541, 1114112, 20, 2818077, 1114112, 21, 2621446, 262144, 19, 2686982, 262144, 19, 2555933, 1114112, 19, 2490397, 1114112, 19, 2490374, 262144, 19, 2752516, 4456448, 2, 2818052, 4456448, 3, 2752517, 4521984, 2, 2818053, 4521984, 3, 2621444, 4456448, 2, 2686980, 4456448, 3, 2621445, 4521984, 2, 2686981, 4521984, 3, 2490372, 4456448, 2, 2555908, 4456448, 3, 2490373, 4521984, 2, 2555909, 4521984, 3, 2490370, 4456448, 2, 2555906, 4456448, 3, 2490371, 4521984, 2, 2555907, 4521984, 3, 2490368, 4456448, 2, 2555904, 4456448, 3, 2490369, 4521984, 2, 2555905, 4521984, 3, 2621440, 4456448, 2, 2686976, 4456448, 3, 2621441, 4521984, 2, 2686977, 4521984, 3, 2752512, 4456448, 2, 2818048, 4456448, 3, 2752513, 4521984, 2, 2818049, 4521984, 3, 2752514, 4456448, 2, 2818050, 4456448, 3, 2752515, 4521984, 2, 2818051, 4521984, 3, 2621442, 4456448, 2, 2686978, 4456448, 3, 2621443, 4521984, 2, 2686979, 4521984, 3, 2752542, 4456448, 2, 2818078, 4456448, 3, 2752543, 4521984, 2, 2818079, 4521984, 3, 2752544, 4456448, 2, 2818080, 4456448, 3, 2752545, 4521984, 2, 2818081, 4521984, 3, 2752546, 4456448, 2, 2818082, 4456448, 3, 2752547, 4521984, 2, 2818083, 4521984, 3, 2621474, 4456448, 2, 2687010, 4456448, 3, 2621475, 4521984, 2, 2687011, 4521984, 3, 2490402, 4456448, 2, 2555938, 4456448, 3, 2490403, 4521984, 2, 2555939, 4521984, 3, 2490400, 4456448, 2, 2555936, 4456448, 3, 2490401, 4521984, 2, 2555937, 4521984, 3, 2490398, 4456448, 2, 2555934, 4456448, 3, 2490399, 4521984, 2, 2555935, 4521984, 3, 2621470, 4456448, 2, 2687006, 4456448, 3, 2621471, 4521984, 2, 2687007, 4521984, 3, 2621472, 4456448, 2, 2687008, 4456448, 3, 2621473, 4521984, 2, 2687009, 4521984, 3, 2687005, 1114112, 19, 2621469, 1114112, 19, 2752536, 655360, 20, 2555910, 262144, 19)
-
-[node name="TileMap2" type="TileMap" parent="Map/Main map"]
-position = Vector2(-95, -26)
-tile_set = SubResource("TileSet_lvo2f")
-format = 2
-layer_0/tile_data = PackedInt32Array(2687002, 2686976, 25, 2687003, 2752512, 25, 2555930, 2686976, 25, 2555931, 2752512, 25, 2621458, 4718592, 2, 2686994, 4718592, 3, 2621459, 4784128, 2, 2686995, 4784128, 3)
+layer_0/tile_data = PackedInt32Array(2621442, 655360, 20, 2686978, 655360, 21, 2621443, 720896, 20, 2686979, 720896, 21, 2621444, 655360, 20, 2686980, 655360, 21, 2621445, 720896, 20, 2686981, 720896, 21, 2621446, 655360, 20, 2686982, 655360, 21, 2621447, 720896, 20, 2686983, 720896, 21, 2621448, 655360, 20, 2686984, 655360, 21, 2621449, 720896, 20, 2686985, 720896, 21, 2621450, 655360, 20, 2686986, 655360, 21, 2621451, 720896, 20, 2686987, 720896, 21, 2621452, 655360, 20, 2686988, 655360, 21, 2621453, 720896, 20, 2686989, 720896, 21, 2621454, 655360, 20, 2686990, 655360, 21, 2621455, 720896, 20, 2686991, 720896, 21, 2621456, 1179648, 18, 2686992, 1179648, 19, 2621457, 1245184, 18, 2686993, 1245184, 19, 2621440, 131072, 18, 2686976, 131072, 19, 2621441, 196608, 18, 2686977, 196608, 19, 2490368, 131072, 16, 2555904, 131072, 17, 2359296, 131072, 16, 2424832, 131072, 17, 2228224, 131072, 16, 2293760, 131072, 17, 2490385, 1245184, 16, 2555921, 1245184, 17, 2359313, 1245184, 16, 2424849, 1245184, 17, 2228241, 1245184, 16, 2293777, 1245184, 17, 2555914, 3145728, 45, 2555915, 2686976, 25, 2555916, 3145728, 45, 2555913, 2228224, 35, 2555917, 3342336, 35)
 
 [node name="interactive" type="Node2D" parent="Map"]
+
+[node name="dialogs" type="Node2D" parent="Map/interactive"]
 process_mode = 3
+script = ExtResource("3_vg133")
 
-[node name="exitOnRun" type="Node2D" parent="Map/interactive"]
+[node name="firstDialog" type="Area2D" parent="Map/interactive/dialogs"]
 
-[node name="enter" type="Area2D" parent="Map/interactive/exitOnRun"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/interactive/dialogs/firstDialog"]
+position = Vector2(35, 621)
+shape = SubResource("RectangleShape2D_l52hc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/interactive/exitOnRun/enter"]
-position = Vector2(339, 629)
-shape = SubResource("RectangleShape2D_x6vn5")
+[node name="battle" type="Area2D" parent="Map/interactive"]
+script = SubResource("GDScript_big52")
 
-[node name="Label" type="Label" parent="Map/interactive/exitOnRun"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/interactive/battle"]
+position = Vector2(184, 621.75)
+shape = SubResource("RectangleShape2D_sej1g")
+
+[node name="Label" type="Label" parent="Map/interactive/battle"]
 visible = false
-offset_left = 311.0
-offset_top = 592.0
-offset_right = 1443.0
-offset_bottom = 938.0
+offset_left = 164.0
+offset_top = 599.0
+offset_right = 569.0
+offset_bottom = 707.0
 scale = Vector2(0.05, 0.05)
-theme_override_fonts/font = ExtResource("3_fyx2m")
-theme_override_font_sizes/font_size = 256
-text = "Старт \"E\""
-
-[node name="treeOfSkills" type="Node2D" parent="Map/interactive"]
-process_mode = 3
-script = ExtResource("4_kmsaq")
-
-[node name="tree" type="Area2D" parent="Map/interactive/treeOfSkills"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/interactive/treeOfSkills/tree"]
-position = Vector2(80.5, 635)
-shape = SubResource("RectangleShape2D_xllkd")
-
-[node name="press_e" type="Label" parent="Map/interactive/treeOfSkills"]
-visible = false
-offset_left = 37.0
-offset_top = 603.0
-offset_right = 1812.0
-offset_bottom = 949.0
-scale = Vector2(0.05, 0.05)
-theme_override_fonts/font = ExtResource("3_fyx2m")
-theme_override_font_sizes/font_size = 185
-text = "Улучшения \"E\""
-horizontal_alignment = 1
-
-[node name="ventDialog" type="Node2D" parent="Map/interactive"]
-process_mode = 3
-script = SubResource("GDScript_qk24d")
-
-[node name="vent" type="Area2D" parent="Map/interactive/ventDialog"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/interactive/ventDialog/vent"]
-position = Vector2(209, 630.75)
-shape = SubResource("RectangleShape2D_unt6t")
-
-[node name="Player" parent="." instance=ExtResource("2_0n62d")]
-position = Vector2(154, 640)
-
-[node name="TileMap3" type="TileMap" parent="."]
-position = Vector2(1, -26)
-tile_set = SubResource("TileSet_r6n81")
-format = 2
-layer_0/tile_data = PackedInt32Array(2621462, 4194307, 4, 2686998, 4194307, 5, 2621463, 983043, 19, 2686999, 983043, 19, 2490390, 4456451, 2, 2555926, 4456451, 3, 2490391, 1114115, 19, 2555927, 983043, 19)
+theme_override_fonts/font = ExtResource("5_mu1jj")
+theme_override_font_sizes/font_size = 160
+text = "Начать \"Е\""
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TreeMenu" parent="CanvasLayer" instance=ExtResource("3_a8kud")]
-visible = false
-
-[node name="Instruction" parent="CanvasLayer/TreeMenu" index="1"]
-offset_left = 492.0
-offset_top = 64.0
-offset_right = 1116.0
-offset_bottom = 604.0
-
-[node name="stat" parent="CanvasLayer/TreeMenu/VBoxContainer/EnergySkill" index="0"]
-offset_left = 33.0688
-offset_top = -0.285715
-offset_right = 333.069
-offset_bottom = 110.714
-
-[node name="stat" parent="CanvasLayer/TreeMenu/VBoxContainer/HPSkill" index="0"]
-offset_left = 33.5979
-offset_top = 0.222221
-offset_right = 335.598
-offset_bottom = 119.222
-
-[node name="dialogWindow" parent="CanvasLayer" instance=ExtResource("4_2jyoj")]
+[node name="dialogWindow" parent="CanvasLayer" instance=ExtResource("2_pvpfq")]
 visible = false
 mouse_filter = 2
 
-[node name="escapeMenu" parent="CanvasLayer" instance=ExtResource("6_dmg13")]
+[node name="escapeMenu" parent="CanvasLayer" instance=ExtResource("3_jmle5")]
 visible = false
 
-[connection signal="body_entered" from="Map/interactive/exitOnRun/enter" to="." method="_on_enter_body_entered"]
-[connection signal="body_exited" from="Map/interactive/exitOnRun/enter" to="." method="_on_enter_body_exited"]
-[connection signal="body_entered" from="Map/interactive/treeOfSkills/tree" to="Map/interactive/treeOfSkills" method="_on_tree_body_entered"]
-[connection signal="body_exited" from="Map/interactive/treeOfSkills/tree" to="Map/interactive/treeOfSkills" method="_on_tree_body_exited"]
-[connection signal="body_entered" from="Map/interactive/ventDialog/vent" to="Map/interactive/ventDialog" method="_on_vent_body_entered"]
-[connection signal="body_exited" from="Map/interactive/ventDialog/vent" to="Map/interactive/ventDialog" method="_on_vent_body_exited"]
-[connection signal="pressed" from="CanvasLayer/TreeMenu/Back" to="Map/interactive/treeOfSkills" method="_on_back_pressed"]
+[connection signal="body_entered" from="Map/interactive/dialogs/firstDialog" to="Map/interactive/dialogs" method="_on_first_dialog_body_entered"]
+[connection signal="body_entered" from="Map/interactive/battle" to="Map/interactive/battle" method="_on_body_entered"]
+[connection signal="body_exited" from="Map/interactive/battle" to="Map/interactive/battle" method="_on_body_exited"]
 
-[editable path="CanvasLayer/TreeMenu"]
 [editable path="CanvasLayer/dialogWindow"]
 [editable path="CanvasLayer/escapeMenu"]

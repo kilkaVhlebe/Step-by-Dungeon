@@ -1,0 +1,140 @@
+[gd_scene load_steps=18 format=3 uid="uid://e66ryyofofht"]
+
+[ext_resource type="Script" path="res://src/LevelsScripts/door.gd" id="1_14d1p"]
+[ext_resource type="Texture2D" uid="uid://dejucl5ws73y3" path="res://Assets/locations/animated-door-Sheet.png" id="1_rsirb"]
+[ext_resource type="FontFile" uid="uid://dog75r1i8nw53" path="res://Assets/Items/TTLakes-Medium.ttf" id="3_edmyo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgxky"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(0, 0, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rk8d"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(0, 0, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avldr"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(144, 0, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0f37"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(0, 96, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uneqe"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(144, 96, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inpo1"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(288, 96, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kqrq"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(0, 192, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ggx2"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(144, 192, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx1d2"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(288, 192, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7f13"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(0, 288, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cc43y"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(144, 288, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kgvt"]
+atlas = ExtResource("1_rsirb")
+region = Rect2(288, 288, 144, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vomrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgxky")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rk8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avldr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0f37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uneqe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inpo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kqrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ggx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx1d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7f13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cc43y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kgvt")
+}],
+"loop": false,
+"name": &"open",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8bbt"]
+size = Vector2(43, 56)
+
+[node name="door" type="Node2D"]
+script = ExtResource("1_14d1p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -23.0
+offset_top = -12.0
+offset_right = 23.0
+offset_bottom = 45.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vomrw")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 18)
+shape = SubResource("RectangleShape2D_e8bbt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = -25.0
+offset_right = 205.0
+offset_bottom = 178.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("3_edmyo")
+theme_override_font_sizes/font_size = 150
+text = "\"E\""
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

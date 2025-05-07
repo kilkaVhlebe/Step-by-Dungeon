@@ -175,6 +175,7 @@ position = Vector2(2, -3.5)
 shape = SubResource("RectangleShape2D_npwu4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 sprite_frames = SubResource("SpriteFrames_id2aq")
 animation = &"death"
 autoplay = "idle"

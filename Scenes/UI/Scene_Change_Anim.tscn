@@ -16,6 +16,7 @@ func close_scene_anim():
 
 
 func _on_tree_exited():
+	self.visible = false
 	close_scene_anim()
 "
 
@@ -60,6 +61,7 @@ _data = {
 custom_minimum_size = Vector2(5.45, 3.655)
 offset_right = 1151.0
 offset_bottom = 647.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = SubResource("GDScript_w0w6r")
 

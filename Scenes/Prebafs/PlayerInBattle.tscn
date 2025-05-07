@@ -229,13 +229,12 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_h07iv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_0cjk0")
-animation = &"shoot"
+animation = &"idle"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(40, -25)

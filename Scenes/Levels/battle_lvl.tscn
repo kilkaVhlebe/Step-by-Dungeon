@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8ea4w0mdniu4"]
+[gd_scene load_steps=25 format=3 uid="uid://b8ea4w0mdniu4"]
 
 [ext_resource type="Script" path="res://src/Systems/battle.system.gd" id="1_8vi6v"]
 [ext_resource type="Texture2D" uid="uid://8jot4amy0e07" path="res://Assets/tileset x1.png" id="1_pntbf"]
@@ -13,10 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://c1x4weafm5red" path="res://Assets/UI/стан.png" id="8_5p81j"]
 [ext_resource type="Texture2D" uid="uid://2hwmft3qvl2f" path="res://Assets/UI/Скип_Focused.png" id="9_1x2fi"]
 [ext_resource type="Texture2D" uid="uid://cpd38l2eydcjt" path="res://Assets/UI/стан_Focused.png" id="11_x8dpf"]
+[ext_resource type="FontFile" uid="uid://dog75r1i8nw53" path="res://Assets/Items/TTLakes-Medium.ttf" id="12_5vmjn"]
 [ext_resource type="Texture2D" uid="uid://b2735p55gqr2v" path="res://Assets/UI/Stun effect.png" id="12_06a8m"]
 [ext_resource type="Script" path="res://src/UI/StunSprite.gd" id="13_aiqei"]
 [ext_resource type="PackedScene" uid="uid://c42puhldgk86f" path="res://Scenes/UI/Scene_Change_Anim.tscn" id="16_588ws"]
 [ext_resource type="AudioStream" uid="uid://bs0xal1g6lrtt" path="res://Audio/Music/Three Red Hearts - Pixel War 2.ogg" id="17_3qcmv"]
+[ext_resource type="PackedScene" uid="uid://bssvyeb84d7ue" path="res://Scenes/UI/escape_menu.tscn" id="18_mruo6"]
+[ext_resource type="PackedScene" uid="uid://dlrwyr45decns" path="res://Scenes/UI/dialog_window.tscn" id="19_cmxjs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2gx4"]
 texture = ExtResource("1_pntbf")
@@ -1011,18 +1014,22 @@ texture_hover = ExtResource("11_x8dpf")
 [node name="Target1" type="Button" parent="Map/UI/UITarget"]
 offset_left = 298.0
 offset_top = 94.0
-offset_right = 311.0
-offset_bottom = 114.0
-theme_override_font_sizes/font_size = 8
+offset_right = 458.0
+offset_bottom = 294.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("12_5vmjn")
+theme_override_font_sizes/font_size = 120
 text = "1"
 script = SubResource("GDScript_snpjd")
 
 [node name="Target2" type="Button" parent="Map/UI/UITarget"]
 offset_left = 278.0
 offset_top = 94.0
-offset_right = 291.0
-offset_bottom = 114.0
-theme_override_font_sizes/font_size = 8
+offset_right = 438.0
+offset_bottom = 294.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = ExtResource("12_5vmjn")
+theme_override_font_sizes/font_size = 120
 text = "2"
 script = SubResource("GDScript_2y0ip")
 
@@ -1070,6 +1077,14 @@ volume_db = -10.4
 autoplay = true
 bus = &"Music"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="escapeMenu" parent="CanvasLayer" instance=ExtResource("18_mruo6")]
+visible = false
+
+[node name="dialogWindow" parent="CanvasLayer" instance=ExtResource("19_cmxjs")]
+visible = false
+
 [connection signal="pressed" from="Map/UI/UIButtuns/Attak" to="Entity/Player/CharacterBody2D" method="_on_attak_pressed"]
 [connection signal="pressed" from="Map/UI/UIButtuns/Skip" to="Entity/Player/CharacterBody2D" method="_on_skip_pressed"]
 [connection signal="pressed" from="Map/UI/UIButtuns/Stun" to="Entity/Player/CharacterBody2D" method="_on_stun_pressed"]
@@ -1077,3 +1092,5 @@ bus = &"Music"
 [connection signal="pressed" from="Map/UI/UITarget/Target2" to="Entity/Player/CharacterBody2D" method="_on_target_2_pressed"]
 [connection signal="tree_exited" from="Entity/Enemies/CharacterBody2D" to="Map/UI/UITarget/Target1" method="_on_character_body_2d_tree_exited"]
 [connection signal="tree_exited" from="Entity/Enemies/2CharacterBody2D" to="Map/UI/UITarget/Target2" method="_on_character_body_2d_tree_exited"]
+
+[editable path="CanvasLayer/escapeMenu"]

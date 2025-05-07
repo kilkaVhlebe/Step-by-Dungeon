@@ -1,7 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://dguhwy6tn12is"]
+[gd_scene load_steps=32 format=3 uid="uid://dguhwy6tn12is"]
 
 [ext_resource type="Texture2D" uid="uid://cn5ng8pig4an8" path="res://Assets/Players/players blue x1.png" id="1_kidpx"]
 [ext_resource type="Script" path="res://src/Entity/player.gd" id="2_4x8g8"]
+[ext_resource type="Texture2D" uid="uid://6e3tn5myg4wd" path="res://Assets/UI/icons/credit_icon.png" id="3_e7ojs"]
+[ext_resource type="Texture2D" uid="uid://dm7v0s3u6ycgj" path="res://Assets/UI/icons/scrap_icon.png" id="3_kels3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cm8u8"]
 size = Vector2(10, 14)
@@ -222,17 +224,58 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_cm8u8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_l86ya")
-animation = &"talk"
+animation = &"reload"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -11)
-zoom = Vector2(8, 8)
-position_smoothing_enabled = true
+zoom = Vector2(7, 7)
+position_smoothing_speed = 10.0
+
+[node name="UI" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -72.0
+offset_top = -41.0
+offset_right = -32.0
+offset_bottom = -1.0
+
+[node name="Credits" type="Sprite2D" parent="Camera2D/UI"]
+position = Vector2(0, 4)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_e7ojs")
+
+[node name="creditValue" type="Label" parent="Camera2D/UI/Credits"]
+anchors_preset = -1
+anchor_left = -0.84375
+anchor_right = -0.84375
+offset_left = 45.3333
+offset_top = -13.3333
+offset_right = 85.3333
+offset_bottom = 18.6667
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 23
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Scrap" type="Sprite2D" parent="Camera2D/UI"]
+position = Vector2(0, 19)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_kels3")
+
+[node name="scrapValue" type="Label" parent="Camera2D/UI/Scrap"]
+offset_left = 18.0
+offset_top = -12.0
+offset_right = 58.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 23
+text = "0"
 
 [node name="MoveSFX" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bssvyeb84d7ue"]
+
+[ext_resource type="Script" path="res://src/UI/escape_menu.gd" id="1_78iiq"]
+[ext_resource type="Texture2D" uid="uid://bfaftsk8m6ui" path="res://Assets/UI/menu ui/Кнопка Выход.png" id="1_o5dwk"]
+[ext_resource type="Texture2D" uid="uid://e2uvb1etoeyc" path="res://Assets/UI/menu ui/Кнопка Играть.png" id="1_xoumc"]
+[ext_resource type="Texture2D" uid="uid://djgrnimj1ehgr" path="res://Assets/UI/menu ui/Кнопка Выход Focused.png" id="2_cqs3j"]
+[ext_resource type="Texture2D" uid="uid://jpoc1vd86fn2" path="res://Assets/UI/menu ui/Кнопка Играть Focused.png" id="2_k8qd3"]
+
+[node name="escapeMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_78iiq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -208.0
+offset_right = 208.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.356
+anchor_bottom = 0.308
+offset_left = 131.0
+offset_top = 141.0
+offset_right = 56.904
+offset_bottom = 76.872
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="resum" type="TextureButton" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("1_xoumc")
+texture_focused = ExtResource("2_k8qd3")
+
+[node name="quit" type="TextureButton" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_o5dwk")
+texture_focused = ExtResource("2_cqs3j")
+
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/resum" to="." method="_on_resum_pressed"]
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/quit" to="." method="_on_quit_pressed"]

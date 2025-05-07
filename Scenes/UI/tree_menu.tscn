@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdenecf1yvcox"]
+[gd_scene load_steps=12 format=3 uid="uid://bdenecf1yvcox"]
 
 [ext_resource type="Texture2D" uid="uid://bsjbjdbr6f4w1" path="res://Assets/UI/Tree ui/tree_background.png" id="1_kxmle"]
 [ext_resource type="Texture2D" uid="uid://dxxhn6m80pkud" path="res://Assets/UI/Tree ui/attack_baff.png" id="2_k5ayr"]
@@ -64,24 +64,15 @@ func _process(delta):
 	$scrapValue.text = str(AutoSaveLoad.scrapValue)
 "
 
-[sub_resource type="GDScript" id="GDScript_yo88q"]
-resource_name = "exitButton"
-script/source = "extends TextureButton
-
-
-@onready var manager = $\".\".script
-
-func _on_pressed():
-	manager.gamePaused = false
-"
-
 [node name="TreeMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Backgraund" type="Sprite2D" parent="."]
 position = Vector2(575, 324.5)
@@ -89,6 +80,7 @@ scale = Vector2(4.5, 5.07031)
 texture = ExtResource("1_kxmle")
 
 [node name="Instruction" type="Label" parent="."]
+layout_mode = 0
 offset_left = 493.0
 offset_top = 57.0
 offset_right = 1117.0
@@ -135,6 +127,7 @@ stretch_mode = 0
 script = SubResource("GDScript_ra8mc")
 
 [node name="stat" type="Label" parent="VBoxContainer/EnergySkill"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 1.0
 offset_right = 334.0
@@ -151,6 +144,7 @@ stretch_mode = 0
 script = SubResource("GDScript_solc4")
 
 [node name="stat" type="Label" parent="VBoxContainer/HPSkill"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 1.0
 offset_right = 336.0
@@ -161,7 +155,7 @@ text = "ХП: +0"
 autowrap_mode = 3
 
 [node name="ScrapIcon" type="Sprite2D" parent="."]
-position = Vector2(75, 570)
+position = Vector2(75, 550)
 scale = Vector2(2.4375, 2.4375)
 texture = ExtResource("5_uosk8")
 script = SubResource("GDScript_dulkx")
@@ -180,15 +174,16 @@ scale = Vector2(3, 3)
 texture = ExtResource("5_uosk8")
 
 [node name="Back" type="TextureButton" parent="."]
+process_mode = 3
 layout_mode = 0
 offset_left = 798.0
 offset_top = 490.0
 offset_right = 1084.0
 offset_bottom = 606.0
+mouse_force_pass_scroll_events = false
 texture_normal = ExtResource("6_hre0w")
 texture_focused = ExtResource("7_w33d1")
 stretch_mode = 0
-script = SubResource("GDScript_yo88q")
 
 [connection signal="pressed" from="VBoxContainer/AttakSkill" to="VBoxContainer/AttakSkill" method="_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/EnergySkill" to="VBoxContainer/EnergySkill" method="_on_pressed"]

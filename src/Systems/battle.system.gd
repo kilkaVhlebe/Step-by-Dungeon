@@ -6,6 +6,8 @@ var isStepNow = false
 @onready var enemy = $Entity/Enemies/CharacterBody2D
 @onready var enemy2 = $"Entity/Enemies/2CharacterBody2D"
 
+@onready var dialog = $CanvasLayer/dialogWindow
+
 
 var batlleResult
 
@@ -15,9 +17,9 @@ var energyBarierColdown = 3
 
 
 func _ready():
-	pass
+	if AutoSaveLoad.tuturialComplete == false:
+		dialog.start_dialog(AllDialogLines.battleTutorial)
 	
-@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if query.size() <= get_tree().get_nodes_in_group("Entity").size():
 		if player != null: addToQuery(player)
@@ -35,7 +37,6 @@ func _physics_process(delta):
 			endStep()
 
 func endStep():
-	await get_tree().create_timer(1).timeout
 	if player.currentEnergy < player.energyCapacity and query[0] != null and not query[0].isStanned:
 		player.currentEnergy += 5
 		
@@ -50,7 +51,7 @@ func endStep():
 		
 	query.remove_at(0)
 	
-	if stepCounter % 2 == 0 and LevelState.playerItemsList.find("medecin_package") != -1:
+	if stepCounter % 2 == 0 and RunState.playerItemsList.find("medecin_package") != -1:
 		player.currentHealth += 5
 		player.hpBar.value = player.currentHealth
 		
@@ -65,9 +66,16 @@ func stepColdown():
 	isStepNow = false
 	
 func endBattle(result):
-	match result:
-		"lose":
-			get_tree().change_scene_to_file("res://Scenes/UI/main_menu.tscn")
-		"win":
-			if LevelState.allSecenesPaths.find(LevelState.currentLevel) < LevelState.allSecenesPaths.size() -1 :
-				get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
+	if AutoSaveLoad.tuturialComplete == true:
+		match result:
+			"lose":
+				get_tree().change_scene_to_file("res://Scenes/Levels/hub_scene.tscn") #todo сделать экран смерти
+			"win":
+				if LevelState.allSecenesPaths.find(LevelState.currentLevel) < LevelState.allSecenesPaths.size() -1 :
+					get_tree().change_scene_to_file(LevelState.allSecenesPaths[LevelState.allSecenesPaths.find(LevelState.currentLevel) + 1])
+	if AutoSaveLoad.tuturialComplete == false:
+		match result:
+			"lose":
+				get_tree().reload_current_scene()
+			"win":
+				get_tree().change_scene_to_file("res://Scenes/Levels/hub_scene.tscn")

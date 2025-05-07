@@ -39,10 +39,10 @@ func onStep():
 		var x = rng.randf() 
 		if x < skillChance and not player.isStanned:
 			print("first check")
-			if LevelState.playerItemsList.find("energy_barier") == -1 and battleSystem.energyBarierColdown != 0:
+			if RunState.playerItemsList.find("energy_barier") == -1 and battleSystem.energyBarierColdown != 0:
 				print("second check")
 				stun(player)
-			elif LevelState.playerItemsList.find("energy_barier") != -1 and battleSystem.energyBarierColdown == 0: 
+			elif RunState.playerItemsList.find("energy_barier") != -1 and battleSystem.energyBarierColdown == 0: 
 				battleSystem.energyBarierColdown = 3
 				#сделать заглушку под эффект предмета
 		else:
