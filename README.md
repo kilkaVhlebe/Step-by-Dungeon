@@ -22,7 +22,9 @@ Cool! Now you can developing this game a much better than me!
 
 ### For playing
 
-You actualy don't need to install the game. Play it on [itch.io](https://kilkavhlebe.itch.io/step-by-dungeon)
+Download `Step by Dungeon.exe` on [itch.io](https://kilkavhlebe.itch.io/step-by-dungeon).
+
+Open. Play.
 
 ## Running
 
